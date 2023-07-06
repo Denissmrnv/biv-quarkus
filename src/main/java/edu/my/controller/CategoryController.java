@@ -39,9 +39,9 @@ public class CategoryController {
 
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/students/{id}")
+    @Path("/categories/{id}")
     @Transactional
-    public String deleteCategory(long id) {
+    public String deleteCategory(@PathParam("id") long id) {
         categoryService.deleteCategory(id);
         return "Category is deleted";
     }
