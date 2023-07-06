@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: table-products
+      author: Smirnov
+      changes:
+        - createTable:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  remarks: Идентификатор продукта (первичный ключ)
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: ID_PRODUCT
+                    nullable=: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  remarks: Название продукта
+              - column:
+                  name: price
+                  type: double
+                  remarks: Цена продукта
+              - column:
+                  name: description
+                  type: varchar(255)
+                  remarks: Описание продукта
+              - column:
+                  name: ID_CATEGORY
+                  type: bigint
+                  remarks: Идентификатор категории продукта (вторичный ключ)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_ID_CATEGORY
+                    references: categories(id)

@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: table-characteristics
+      author: Smirnov
+      changes:
+        - createTable:
+            tableName: characteristics
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  remarks: Идентификатор характеристики (первичный ключ)
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: ID_CHARACTERISTIC
+                    nullable=: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  remarks: Название нарактеристики
+              - column:
+                  name: beaning
+                  type: varchar(255)
+                  remarks: Значение нарактеристики
+              - column:
+                  name: ID_PRODUCT
+                  type: bigint
+                  remarks: Идентификатор продукта (вторичный ключ)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_ID_PRODUCT
+                    references: products(id)
