@@ -21,10 +21,58 @@ public class Product extends PanacheEntityBase {
     public String description;
 
     @OneToOne(fetch = FetchType.EAGER,optional=true)
-    @JoinTable(name = "category", joinColumns = @JoinColumn(name = "ID_PRODUCT"), inverseJoinColumns = @JoinColumn(name = "ID_CATEGORY"))
+//    @JoinTable(name = "category", joinColumns = @JoinColumn(name = "ID_PRODUCT"), inverseJoinColumns = @JoinColumn(name = "ID_CATEGORY"))
+    @JoinColumn(name = "id_category")
     private Category category;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Characteristic> characteristicSet;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Characteristic> getCharacteristicSet() {
+        return characteristicSet;
+    }
+
+    public void setCharacteristicSet(Set<Characteristic> characteristicSet) {
+        this.characteristicSet = characteristicSet;
+    }
 }

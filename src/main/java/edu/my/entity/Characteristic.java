@@ -1,5 +1,6 @@
 package edu.my.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
@@ -18,6 +19,7 @@ public class Characteristic extends PanacheEntityBase {
     @ManyToOne(fetch = FetchType.LAZY,optional=false)
 //    @JoinTable(name = "products", joinColumns = @JoinColumn(name = "ID_CHARACTERISTIC"), inverseJoinColumns = @JoinColumn(name = "ID_PRODUCT"))
     @JoinColumn(name = "id_product")
+    @JsonIgnore
     private Product product;
 
     public Long getId() {
