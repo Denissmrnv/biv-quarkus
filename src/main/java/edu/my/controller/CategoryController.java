@@ -23,7 +23,7 @@ public class CategoryController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/categories/{id}")
-    public Category getCategoryById(long id)  {
+    public Category getCategoryById(@PathParam("id") Long id)  {
         return categoryService.getCategory(id);
     }
 
