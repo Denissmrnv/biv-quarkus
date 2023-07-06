@@ -32,6 +32,5 @@ databaseChangeLog:
                   type: bigint
                   remarks: Идентификатор категории продукта (вторичный ключ)
                   constraints:
-                    nullable: false
                     foreignKeyName: FK_ID_CATEGORY
                     references: categories(id)
