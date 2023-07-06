@@ -6,6 +6,7 @@ import edu.my.entity.Product;
 import edu.my.service.ProductService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -24,11 +25,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void deleteProduct(long id) {
         productRepository.deleteById(id);
     }
 
     @Override
+    @Transactional
     public void updateProduct(long id, Product product) {
         Product productSearch = productRepository.findById(id);
         productSearch.setCategory(product.getCategory());
@@ -40,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void saveProduct(Product product) {
         productRepository.persist(product);
     }
