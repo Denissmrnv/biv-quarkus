@@ -20,6 +20,7 @@ public class CategoryController {
     public List<Category> getAllCategories()  {
         return categoryService.getAllCategories();
     }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/categories/{id}")
@@ -44,5 +45,14 @@ public class CategoryController {
     public String deleteCategory(@PathParam("id") long id) {
         categoryService.deleteCategory(id);
         return "Category is deleted";
+    }
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/categories/{id}")
+    @Transactional
+    public String updateCategory(@PathParam("id") long id, Category category) {
+        categoryService.updateCategory(id, category);
+        return "Category is updated";
     }
 }

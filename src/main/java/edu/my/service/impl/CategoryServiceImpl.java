@@ -29,10 +29,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void updateCategory(long id) {
-        Category category = categoryRepository.findById(id);
-        category.name = "test";
-        categoryRepository.persist(category);
+    public void updateCategory(long id, Category category) {
+        Category categorySearch = categoryRepository.findById(id);
+        categorySearch.setName(category.getName());
+        categoryRepository.persist(categorySearch);
     }
 
     @Override
