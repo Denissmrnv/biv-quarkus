@@ -1,6 +1,6 @@
 package edu.my.service.impl;
 
-import edu.my.dao.CategoryRepository;
+import edu.my.repository.CategoryRepository;
 import edu.my.entity.Category;
 import edu.my.service.CategoryService;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -35,7 +35,6 @@ public class CategoryServiceImpl implements CategoryService {
     public void updateCategory(long id, Category category) {
         Category categorySearch = categoryRepository.findById(id);
         categorySearch.setName(category.getName());
-        categoryRepository.persist(categorySearch);
     }
 
     @Override

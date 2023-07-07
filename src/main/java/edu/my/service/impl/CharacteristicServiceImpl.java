@@ -1,6 +1,6 @@
 package edu.my.service.impl;
 
-import edu.my.dao.CharacteristicRepository;
+import edu.my.repository.CharacteristicRepository;
 import edu.my.entity.Characteristic;
 import edu.my.service.CharacteristicService;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -37,7 +37,6 @@ public class CharacteristicServiceImpl implements CharacteristicService {
         characteristicSearch.setName(characteristic.getName());
         characteristicSearch.setBeaning(characteristic.getBeaning());
         characteristicSearch.setProduct(characteristic.getProduct());
-        characteristicRepository.persist(characteristicSearch);
     }
 
     @Override

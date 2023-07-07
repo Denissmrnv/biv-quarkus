@@ -1,4 +1,4 @@
-package edu.my.dao;
+package edu.my.repository;
 
 import edu.my.entity.Category;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;

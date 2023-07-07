@@ -2,9 +2,14 @@ package edu.my.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "categories")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category extends PanacheEntityBase {
     @Id
     @Column(name = "id")
@@ -12,12 +17,4 @@ public class Category extends PanacheEntityBase {
     public Long id;
     @Column(name = "name")
     public String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

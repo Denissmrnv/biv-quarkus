@@ -1,7 +1,6 @@
 package edu.my.service.impl;
 
-import edu.my.dao.CharacteristicRepository;
-import edu.my.dao.ProductRepository;
+import edu.my.repository.ProductRepository;
 import edu.my.entity.Product;
 import edu.my.service.ProductService;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -39,7 +38,6 @@ public class ProductServiceImpl implements ProductService {
         productSearch.setPrice(product.getPrice());
         productSearch.setCharacteristicSet(product.getCharacteristicSet());
         productSearch.setName(product.getName());
-        productRepository.persist(product);
     }
 
     @Override
