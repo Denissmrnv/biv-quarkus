@@ -1,10 +1,10 @@
 package edu.my.controller;
 
+import edu.my.dto.CategoryDTO;
 import edu.my.entity.Category;
 import edu.my.service.CategoryService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
@@ -20,20 +20,20 @@ public class CategoryController {
 
     @GET
     @Path("/categories")
-    public List<Category> getAllCategories()  {
+    public List<CategoryDTO> getAllCategories()  {
         return categoryService.getAllCategories();
     }
 
     @GET
     @Path("/categories/{id}")
-    public Category getCategoryById(@PathParam("id") Long id)  {
+    public CategoryDTO getCategoryById(@PathParam("id") Long id)  {
         return categoryService.getCategory(id);
     }
 
     @POST
     @Path("/categories")
-    public String addCategory(Category category) {
-        categoryService.saveCategory(category);
+    public String addCategory(CategoryDTO categoryDTO) {
+        categoryService.saveCategory(categoryDTO);
         return "Category is added";
     }
 
@@ -46,8 +46,8 @@ public class CategoryController {
 
     @PUT
     @Path("/categories/{id}")
-    public String updateCategory(@PathParam("id") long id, Category category) {
-        categoryService.updateCategory(id, category);
+    public String updateCategory(@PathParam("id") long id, CategoryDTO categoryDTO) {
+        categoryService.updateCategory(id, categoryDTO);
         return "Category is updated";
     }
 }

@@ -1,4 +1,4 @@
-package edu.my.dto.product;
+package edu.my.dto;
 
 import edu.my.entity.Category;
 import edu.my.entity.Characteristic;

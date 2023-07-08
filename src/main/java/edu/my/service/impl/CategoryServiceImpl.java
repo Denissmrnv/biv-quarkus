@@ -1,5 +1,8 @@
 package edu.my.service.impl;
 
+import edu.my.dto.CategoryDTO;
+import edu.my.mapper.CategoryMapper;
+import edu.my.mapper.ProductMapper;
 import edu.my.repository.CategoryRepository;
 import edu.my.entity.Category;
 import edu.my.service.CategoryService;
@@ -15,13 +18,13 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryRepository categoryRepository;
 
     @Override
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll().list();
+    public List<CategoryDTO> getAllCategories() {
+        return CategoryMapper.INSTANCE.toDTO(categoryRepository.findAll().list());
     }
 
     @Override
-    public Category getCategory(long id) {
-        return categoryRepository.findById(id);
+    public CategoryDTO getCategory(long id) {
+        return CategoryMapper.INSTANCE.toDTO(categoryRepository.findById(id));
     }
 
     @Override
@@ -32,14 +35,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional
-    public void updateCategory(long id, Category category) {
+    public void updateCategory(long id, CategoryDTO categoryDTO) {
         Category categorySearch = categoryRepository.findById(id);
-        categorySearch.setName(category.getName());
+        categorySearch.setName(categoryDTO.getName());
     }
 
     @Override
     @Transactional
-    public void saveCategory(Category category) {
-        categoryRepository.persist(category);
+    public void saveCategory(CategoryDTO categoryDTO) {
+        categoryRepository.persist(CategoryMapper.INSTANCE.toEntity(categoryDTO));
     }
 }

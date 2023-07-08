@@ -1,6 +1,6 @@
 package edu.my.service.impl;
 
-import edu.my.dto.product.ProductDTO;
+import edu.my.dto.ProductDTO;
 import edu.my.mapper.ProductMapper;
 import edu.my.repository.ProductRepository;
 import edu.my.entity.Product;

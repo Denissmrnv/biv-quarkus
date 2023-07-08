@@ -1,6 +1,6 @@
 package edu.my.mapper;
 
-import edu.my.dto.product.ProductDTO;
+import edu.my.dto.ProductDTO;
 import edu.my.entity.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
