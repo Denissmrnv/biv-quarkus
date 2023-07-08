@@ -1,10 +1,10 @@
 package edu.my.controller;
 
-import edu.my.entity.Product;
+import edu.my.dto.product.ProductDTO;
+import edu.my.mapper.ProductMapper;
 import edu.my.service.ProductService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
@@ -20,20 +20,20 @@ public class ProductController {
 
     @GET
     @Path("/products")
-    public List<Product> getAllProducts()  {
+    public List<ProductDTO> getAllProducts()  {
         return productService.getAllProducts();
     }
 
     @GET
     @Path("/products/{id}")
-    public Product getProductById(@PathParam("id") Long id)  {
+    public ProductDTO getProductById(@PathParam("id") Long id)  {
         return productService.getProduct(id);
     }
 
     @POST
     @Path("/products")
-    public String addProduct(Product product) {
-        productService.saveProduct(product);
+    public String addProduct(ProductDTO productDTO) {
+        productService.saveProduct(productDTO);
         return "Product is added";
     }
 
@@ -46,8 +46,8 @@ public class ProductController {
 
     @PUT
     @Path("/products/{id}")
-    public String updateProduct(@PathParam("id") long id, Product product) {
-        productService.updateProduct(id, product);
+    public String updateProduct(@PathParam("id") long id, ProductDTO productDTO) {
+        productService.updateProduct(id, productDTO);
         return "Product is updated";
     }
 }

@@ -1,5 +1,7 @@
 package edu.my.service.impl;
 
+import edu.my.dto.product.ProductDTO;
+import edu.my.mapper.ProductMapper;
 import edu.my.repository.ProductRepository;
 import edu.my.entity.Product;
 import edu.my.service.ProductService;
@@ -14,13 +16,13 @@ public class ProductServiceImpl implements ProductService {
     @Inject
     ProductRepository productRepository;
     @Override
-    public List<Product> getAllProducts() {
-        return productRepository.findAll().list();
+    public List<ProductDTO> getAllProducts() {
+        return ProductMapper.INSTANCE.toDTO(productRepository.findAll().list());
     }
 
     @Override
-    public Product getProduct(long id) {
-        return productRepository.findById(id);
+    public ProductDTO getProduct(long id) {
+        return ProductMapper.INSTANCE.toDTO(productRepository.findById(id));
     }
 
     @Override
@@ -31,18 +33,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public void updateProduct(long id, Product product) {
+    public void updateProduct(long id, ProductDTO productDTO) {
         Product productSearch = productRepository.findById(id);
-        productSearch.setCategory(product.getCategory());
-        productSearch.setDescription(product.getDescription());
-        productSearch.setPrice(product.getPrice());
-        productSearch.setCharacteristicSet(product.getCharacteristicSet());
-        productSearch.setName(product.getName());
+        productSearch.setCategory(productDTO.getCategory());
+        productSearch.setDescription(productDTO.getDescription());
+        productSearch.setPrice(productDTO.getPrice());
+        productSearch.setCharacteristicSet(productDTO.getCharacteristicSet());
+        productSearch.setName(productDTO.getName());
     }
 
     @Override
     @Transactional
-    public void saveProduct(Product product) {
-        productRepository.persist(product);
+    public void saveProduct(ProductDTO productDTO) {
+        productRepository.persist(ProductMapper.INSTANCE.toEntity(productDTO));
     }
 }

@@ -4,7 +4,6 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,13 +16,13 @@ public class Product extends PanacheEntityBase {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
     @Column(name = "name")
-    public String name;
+    private String name;
     @Column(name = "price")
-    public Float price;
+    private Float price;
     @Column(name = "description")
-    public String description;
+    private String description;
 
     @OneToOne(fetch = FetchType.EAGER,optional=true)
     @JoinColumn(name = "id_category")

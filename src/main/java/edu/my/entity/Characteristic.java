@@ -15,11 +15,11 @@ public class Characteristic extends PanacheEntityBase {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
     @Column(name = "name")
-    public String name;
+    private String name;
     @Column(name = "beaning")
-    public String beaning;
+    private String beaning;
     @ManyToOne(fetch = FetchType.LAZY,optional=false)
     @JoinColumn(name = "id_product")
     @JsonIgnore

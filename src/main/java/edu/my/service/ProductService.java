@@ -1,13 +1,14 @@
 package edu.my.service;
 
+import edu.my.dto.product.ProductDTO;
 import edu.my.entity.Product;
 
 import java.util.List;
 
 public interface ProductService {
-    public List<Product> getAllProducts();
-    public Product getProduct(long id);
+    public List<ProductDTO> getAllProducts();
+    public ProductDTO getProduct(long id);
     public void deleteProduct(long id);
-    public void updateProduct(long id, Product product);
-    public void saveProduct(Product product);
+    public void updateProduct(long id, ProductDTO productDTO);
+    public void saveProduct(ProductDTO productDTO);
 }
