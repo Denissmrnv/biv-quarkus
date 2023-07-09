@@ -83,6 +83,10 @@
       <scope>compile</scope>
       <version>${mapstruct.version}</version>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-metrics</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
