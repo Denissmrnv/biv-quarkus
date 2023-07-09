@@ -1,12 +1,12 @@
 package edu.my.service;
 
-import edu.my.entity.Characteristic;
+import edu.my.dto.CharacteristicDTO;
 import java.util.List;
 
 public interface CharacteristicService {
-    public List<Characteristic> getAllCharacteristics();
-    public Characteristic getCharacteristic(long id);
+    public List<CharacteristicDTO> getAllCharacteristics();
+    public CharacteristicDTO getCharacteristic(long id);
     public void deleteCharacteristic(long id);
-    public void updateCharacteristic(long id, Characteristic characteristic);
-    public void saveCharacteristic(Characteristic characteristic);
+    public void updateCharacteristic(long id, CharacteristicDTO characteristicDTO);
+    public void saveCharacteristic(CharacteristicDTO characteristicDTO);
 }

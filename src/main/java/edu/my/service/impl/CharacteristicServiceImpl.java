@@ -1,5 +1,8 @@
 package edu.my.service.impl;
 
+import edu.my.dto.CharacteristicDTO;
+import edu.my.mapper.CategoryMapper;
+import edu.my.mapper.CharacteristicMapper;
 import edu.my.repository.CharacteristicRepository;
 import edu.my.entity.Characteristic;
 import edu.my.service.CharacteristicService;
@@ -15,13 +18,13 @@ public class CharacteristicServiceImpl implements CharacteristicService {
     CharacteristicRepository characteristicRepository;
 
     @Override
-    public List<Characteristic> getAllCharacteristics() {
-        return characteristicRepository.findAll().list();
+    public List<CharacteristicDTO> getAllCharacteristics() {
+        return CharacteristicMapper.INSTANCE.toDTO(characteristicRepository.findAll().list());
     }
 
     @Override
-    public Characteristic getCharacteristic(long id) {
-        return characteristicRepository.findById(id);
+    public CharacteristicDTO getCharacteristic(long id) {
+        return CharacteristicMapper.INSTANCE.toDTO(characteristicRepository.findById(id));
     }
 
     @Override
@@ -32,16 +35,16 @@ public class CharacteristicServiceImpl implements CharacteristicService {
 
     @Override
     @Transactional
-    public void updateCharacteristic(long id, Characteristic characteristic) {
+    public void updateCharacteristic(long id, CharacteristicDTO characteristicDTO) {
         Characteristic  characteristicSearch = characteristicRepository.findById(id);
-        characteristicSearch.setName(characteristic.getName());
-        characteristicSearch.setBeaning(characteristic.getBeaning());
-        characteristicSearch.setProduct(characteristic.getProduct());
+        characteristicSearch.setName(characteristicDTO.getName());
+        characteristicSearch.setBeaning(characteristicDTO.getBeaning());
+        characteristicSearch.setProduct(characteristicDTO.getProduct());
     }
 
     @Override
     @Transactional
-    public void saveCharacteristic(Characteristic characteristic) {
-        characteristicRepository.persist(characteristic);
+    public void saveCharacteristic(CharacteristicDTO characteristicDTO) {
+        characteristicRepository.persist(CharacteristicMapper.INSTANCE.toEntity(characteristicDTO));
     }
 }

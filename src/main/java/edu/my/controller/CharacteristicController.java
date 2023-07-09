@@ -1,4 +1,5 @@
 package edu.my.controller;
+import edu.my.dto.CharacteristicDTO;
 import edu.my.entity.Characteristic;
 import edu.my.service.CharacteristicService;
 import jakarta.enterprise.context.RequestScoped;
@@ -19,20 +20,20 @@ public class CharacteristicController {
 
     @GET
     @Path("/characteristics")
-    public List<Characteristic> getAllCharacteristics()  {
+    public List<CharacteristicDTO> getAllCharacteristics()  {
         return characteristicService.getAllCharacteristics();
     }
 
     @GET
     @Path("/characteristics/{id}")
-    public Characteristic getCharacteristicById(@PathParam("id") Long id)  {
+    public CharacteristicDTO getCharacteristicById(@PathParam("id") Long id)  {
         return characteristicService.getCharacteristic(id);
     }
 
     @POST
     @Path("/characteristics")
-    public String addCharacteristic(Characteristic characteristic) {
-        characteristicService.saveCharacteristic(characteristic);
+    public String addCharacteristic(CharacteristicDTO characteristicDTO) {
+        characteristicService.saveCharacteristic(characteristicDTO);
         return "Characteristic is added";
     }
 
@@ -45,8 +46,8 @@ public class CharacteristicController {
 
     @PUT
     @Path("/characteristics/{id}")
-    public String updateCharacteristic(@PathParam("id") long id, Characteristic characteristic) {
-        characteristicService.updateCharacteristic(id, characteristic);
+    public String updateCharacteristic(@PathParam("id") long id, CharacteristicDTO characteristicDTO) {
+        characteristicService.updateCharacteristic(id, characteristicDTO);
         return "Characteristic is updated";
     }
 }
