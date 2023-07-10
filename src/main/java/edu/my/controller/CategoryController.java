@@ -87,7 +87,7 @@ public class CategoryController {
             )
             CategoryDTO categoryDTO) {
         categoryService.saveCategory(categoryDTO);
-        return Response.status(Response.Status.CREATED).entity(categoryDTO).build();
+        return Response.status(Response.Status.CREATED).entity(categoryService.getAllCategories()).build();
     }
 
     @DELETE
