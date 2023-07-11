@@ -1,5 +1,6 @@
 package edu.my.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,8 +27,10 @@ public class Product extends PanacheEntityBase {
 
     @OneToOne(fetch = FetchType.EAGER,optional=true)
     @JoinColumn(name = "id_category")
+    @JsonIgnore
     private Category category;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Characteristic> characteristicSet;
 }
