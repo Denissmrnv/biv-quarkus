@@ -1,6 +1,8 @@
 package edu.my.service.impl;
 
+import edu.my.dto.CategoryDTO;
 import edu.my.dto.ProductDTO;
+import edu.my.mapper.CategoryMapper;
 import edu.my.mapper.ProductMapper;
 import edu.my.repository.ProductRepository;
 import edu.my.entity.Product;
@@ -46,5 +48,21 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public void saveProduct(ProductDTO productDTO) {
         productRepository.persist(ProductMapper.INSTANCE.toEntity(productDTO));
+    }
+
+    @Override
+    @Transactional
+    public void saveOneHundredProduct(ProductDTO productDTO) {
+        for (int i = 0; i < 100; i++) {
+            ProductDTO product = new ProductDTO();
+
+            product.setCategory(productDTO.getCategory());
+            product.setDescription(productDTO.getDescription());
+            product.setPrice(productDTO.getPrice());
+            product.setCharacteristicSet(productDTO.getCharacteristicSet());
+            product.setName(productDTO.getName() + " " + i);
+
+            productRepository.persist(ProductMapper.INSTANCE.toEntity(product));
+        }
     }
 }

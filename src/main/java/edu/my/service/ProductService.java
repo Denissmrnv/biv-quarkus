@@ -1,5 +1,6 @@
 package edu.my.service;
 
+import edu.my.dto.CategoryDTO;
 import edu.my.dto.ProductDTO;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface ProductService {
     public void deleteProduct(long id);
     public void updateProduct(long id, ProductDTO productDTO);
     public void saveProduct(ProductDTO productDTO);
+    public void saveOneHundredProduct(ProductDTO productDTO);
 }

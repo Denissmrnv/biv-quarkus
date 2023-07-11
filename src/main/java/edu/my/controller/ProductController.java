@@ -1,6 +1,7 @@
 package edu.my.controller;
 
 import edu.my.dto.ProductDTO;
+import edu.my.dto.ProductDTO;
 import edu.my.service.ProductService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
@@ -136,5 +137,30 @@ public class ProductController {
             ProductDTO productDTO) {
         productService.updateProduct(id, productDTO);
         return "Product is updated";
+    }
+
+    @POST
+    @Path("/products/addOneHundred")
+    @Counted(name = "performedChecksAddOneHundredProduct", description = "How many one hundred products additions have been made.")
+    @Timed(name = "checksTimerDddOneHundredProduct", description = "A measure of how long it takes to complete a one hundred products addition.", unit = MetricUnits.MILLISECONDS)
+    @Operation(
+            operationId = "addOneHundredProduct",
+            summary = "Add a new one hundred products",
+            description = "Add a new one hundred products to the db"
+    )
+    @APIResponse(
+            responseCode = "201",
+            description = "One hundred products is added",
+            content = @Content(mediaType = MediaType.APPLICATION_JSON)
+    )
+    public Response addOneHundredProduct(
+            @RequestBody(
+                    description = "Product to create",
+                    required = true,
+                    content = @Content(schema = @Schema(implementation = ProductDTO.class))
+            )
+            ProductDTO productDTO) {
+        productService.saveOneHundredProduct(productDTO);
+        return Response.status(Response.Status.CREATED).entity(productService.getAllProducts()).build();
     }
 }
