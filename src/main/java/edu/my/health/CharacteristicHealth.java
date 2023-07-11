@@ -11,7 +11,7 @@ import jakarta.ws.rs.HttpMethod;
 public class CharacteristicHealth {
     @ConfigProperty(name = "application.server")
     String server;
-    @ConfigProperty(name = "application.port")
+    @ConfigProperty(name = "quarkus.http.port")
     String port;
 
     @Readiness
