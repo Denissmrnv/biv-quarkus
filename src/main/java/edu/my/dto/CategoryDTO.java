@@ -1,6 +1,6 @@
 package edu.my.dto;
 
-import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +15,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 public class CategoryDTO {
     @Schema(description = "Category id")
     private Long id;
+    @NotNull
     @Schema(description = "Category name")
     private String name;
 }

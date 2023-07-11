@@ -2,6 +2,7 @@ package edu.my.dto;
 
 import edu.my.entity.Category;
 import edu.my.entity.Characteristic;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -15,8 +16,10 @@ import java.util.Set;
 public class ProductDTO {
     @Schema(description = "Product id")
     private Long id;
+    @NotNull
     @Schema(description = "Product name")
     private String name;
+    @NotNull
     @Schema(description = "Product price")
     private Float price;
     @Schema(description = "Product description")
