@@ -38,7 +38,7 @@ public class CharacteristicServiceImpl implements CharacteristicService {
     public void updateCharacteristic(long id, CharacteristicDTO characteristicDTO) {
         Characteristic  characteristicSearch = characteristicRepository.findById(id);
         characteristicSearch.setName(characteristicDTO.getName());
-        characteristicSearch.setBeaning(characteristicDTO.getBeaning());
+        characteristicSearch.setMeaning(characteristicDTO.getMeaning());
         characteristicSearch.setProduct(characteristicDTO.getProduct());
     }
 

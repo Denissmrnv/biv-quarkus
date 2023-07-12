@@ -48,7 +48,7 @@ public class ProductAndCategoryServiceImpl implements ProductAndCategoryService 
         for (Characteristic characteristic: characteristicSet) {
             Characteristic characteristicInDB = characteristicRepository.findById(characteristic.getId());
             characteristicInDB.setName(characteristic.getName());
-            characteristicInDB.setBeaning(characteristic.getBeaning());
+            characteristicInDB.setMeaning(characteristic.getMeaning());
             characteristicInDB.setProduct(product);
         }
     }

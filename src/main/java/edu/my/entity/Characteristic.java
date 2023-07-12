@@ -18,8 +18,8 @@ public class Characteristic extends PanacheEntityBase {
     private Long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "beaning")
-    private String beaning;
+    @Column(name = "meaning")
+    private String meaning;
     @ManyToOne(fetch = FetchType.LAZY,optional=false)
     @JoinColumn(name = "id_product")
     @JsonIgnore

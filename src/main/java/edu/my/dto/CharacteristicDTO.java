@@ -20,8 +20,8 @@ public class CharacteristicDTO {
     @Schema(description = "Characteristic name")
     private String name;
     @NotNull
-    @Schema(description = "Characteristic beaning")
-    private String beaning;
+    @Schema(description = "Characteristic meaning")
+    private String meaning;
     @Schema(description = "Characteristic object Product")
     private Product product;
 }
