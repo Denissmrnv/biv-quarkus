@@ -20,11 +20,13 @@ public class ProductAndCategoryServiceImpl implements ProductAndCategoryService 
     ProductRepository productRepository;
     @Inject
     CharacteristicRepository characteristicRepository;
+    @Inject
+    ProductMapper productMapper;
 
     @Override
     @Transactional
     public void saveProductAndCharacteristic(ProductDTO productDTO) {
-        Product product = ProductMapper.INSTANCE.toEntity(productDTO);
+        Product product = productMapper.toEntity(productDTO);
         productRepository.persist(product);
         Set<Characteristic> characteristicSet = productDTO.getCharacteristicSet();
         for (Characteristic characteristic: characteristicSet) {

@@ -17,14 +17,17 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     @Inject
     ProductRepository productRepository;
+    @Inject
+    ProductMapper productMapper;
+    
     @Override
     public List<ProductDTO> getAllProducts() {
-        return ProductMapper.INSTANCE.toDTO(productRepository.findAll().list());
+        return productMapper.toDTO(productRepository.findAll().list());
     }
 
     @Override
     public ProductDTO getProduct(long id) {
-        return ProductMapper.INSTANCE.toDTO(productRepository.findById(id));
+        return productMapper.toDTO(productRepository.findById(id));
     }
 
     @Override
@@ -47,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void saveProduct(ProductDTO productDTO) {
-        productRepository.persist(ProductMapper.INSTANCE.toEntity(productDTO));
+        productRepository.persist(productMapper.toEntity(productDTO));
     }
 
     @Override
@@ -62,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
             product.setCharacteristicSet(productDTO.getCharacteristicSet());
             product.setName(productDTO.getName() + " " + i);
 
-            productRepository.persist(ProductMapper.INSTANCE.toEntity(product));
+            productRepository.persist(productMapper.toEntity(product));
         }
     }
 }

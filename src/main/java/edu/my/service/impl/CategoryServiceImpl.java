@@ -16,15 +16,17 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     @Inject
     CategoryRepository categoryRepository;
+    @Inject
+    CategoryMapper categoryMapper;
 
     @Override
     public List<CategoryDTO> getAllCategories() {
-        return CategoryMapper.INSTANCE.toDTO(categoryRepository.findAll().list());
+        return categoryMapper.toDTO(categoryRepository.findAll().list());
     }
 
     @Override
     public CategoryDTO getCategory(long id) {
-        return CategoryMapper.INSTANCE.toDTO(categoryRepository.findById(id));
+        return categoryMapper.toDTO(categoryRepository.findById(id));
     }
 
     @Override
@@ -43,6 +45,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Transactional
     public void saveCategory(CategoryDTO categoryDTO) {
-        categoryRepository.persist(CategoryMapper.INSTANCE.toEntity(categoryDTO));
+        categoryRepository.persist(categoryMapper.toEntity(categoryDTO));
     }
 }

@@ -16,15 +16,17 @@ import java.util.List;
 public class CharacteristicServiceImpl implements CharacteristicService {
     @Inject
     CharacteristicRepository characteristicRepository;
+    @Inject
+    CharacteristicMapper characteristicMapper;
 
     @Override
     public List<CharacteristicDTO> getAllCharacteristics() {
-        return CharacteristicMapper.INSTANCE.toDTO(characteristicRepository.findAll().list());
+        return characteristicMapper.toDTO(characteristicRepository.findAll().list());
     }
 
     @Override
     public CharacteristicDTO getCharacteristic(long id) {
-        return CharacteristicMapper.INSTANCE.toDTO(characteristicRepository.findById(id));
+        return characteristicMapper.toDTO(characteristicRepository.findById(id));
     }
 
     @Override
@@ -45,6 +47,6 @@ public class CharacteristicServiceImpl implements CharacteristicService {
     @Override
     @Transactional
     public void saveCharacteristic(CharacteristicDTO characteristicDTO) {
-        characteristicRepository.persist(CharacteristicMapper.INSTANCE.toEntity(characteristicDTO));
+        characteristicRepository.persist(characteristicMapper.toEntity(characteristicDTO));
     }
 }

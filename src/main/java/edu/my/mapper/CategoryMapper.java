@@ -3,14 +3,14 @@ package edu.my.mapper;
 import edu.my.dto.CategoryDTO;
 import edu.my.entity.Category;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "jakarta", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface CategoryMapper {
-    CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
     CategoryDTO toDTO(Category category);
-    Category toEntity(CategoryDTO categoryDTO);
     List<CategoryDTO> toDTO(List<Category> categoryList);
+    Category toEntity(CategoryDTO categoryDTO);
+    List<Category> toEntity(List<CategoryDTO> categoryDTOList);
 }
