@@ -1,9 +1,13 @@
 package edu.my.service.impl;
 
 import edu.my.dto.CategoryDTO;
+import edu.my.dto.CharacteristicDTO;
 import edu.my.dto.ProductDTO;
+import edu.my.entity.Characteristic;
 import edu.my.mapper.CategoryMapper;
+import edu.my.mapper.CharacteristicMapper;
 import edu.my.mapper.ProductMapper;
+import edu.my.repository.CharacteristicRepository;
 import edu.my.repository.ProductRepository;
 import edu.my.entity.Product;
 import edu.my.service.ProductService;
@@ -12,6 +16,7 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @ApplicationScoped
 public class ProductServiceImpl implements ProductService {
@@ -19,7 +24,9 @@ public class ProductServiceImpl implements ProductService {
     ProductRepository productRepository;
     @Inject
     ProductMapper productMapper;
-    
+    @Inject
+    CharacteristicRepository characteristicRepository;
+
     @Override
     public List<ProductDTO> getAllProducts() {
         return productMapper.toDTO(productRepository.findAll().list());
@@ -39,18 +46,32 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void updateProduct(long id, ProductDTO productDTO) {
-        Product productSearch = productRepository.findById(id);
-        productSearch.setCategory(productDTO.getCategory());
-        productSearch.setDescription(productDTO.getDescription());
-        productSearch.setPrice(productDTO.getPrice());
-        productSearch.setCharacteristicSet(productDTO.getCharacteristicSet());
-        productSearch.setName(productDTO.getName());
+        Product product = productRepository.findById(id);
+
+        product.setCategory(productDTO.getCategory());
+        product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
+        product.setName(productDTO.getName());
+
+        Set<CharacteristicDTO> characteristicSetDTO = productDTO.getCharacteristicSet();
+
+        for (CharacteristicDTO characteristicDTO: characteristicSetDTO) {
+            Characteristic characteristic = characteristicRepository.findById(characteristicDTO.getId());
+            characteristic.setName(characteristicDTO.getName());
+            characteristic.setMeaning(characteristicDTO.getMeaning());
+            characteristic.setProduct(product);
+        }
     }
 
     @Override
     @Transactional
     public void saveProduct(ProductDTO productDTO) {
-        productRepository.persist(productMapper.toEntity(productDTO));
+        Product product = productMapper.toEntity(productDTO);
+        Set<Characteristic> characteristicSet = product.getCharacteristicSet();
+        for (Characteristic characteristic : characteristicSet) {
+            characteristic.setProduct(product);
+        }
+        productRepository.persist(product);
     }
 
     @Override

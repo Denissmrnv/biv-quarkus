@@ -27,5 +27,5 @@ public class ProductDTO {
     @Schema(description = "Product object Category")
     private Category category;
     @Schema(description = "Product set of characteristic")
-    private Set<Characteristic> characteristicSet;
+    private Set<CharacteristicDTO> characteristicSet;
 }
