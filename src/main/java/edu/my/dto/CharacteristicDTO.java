@@ -11,7 +11,6 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Schema(name = "CharacteristicDTO", description = "Characteristic representation")
 public class CharacteristicDTO {
     @Schema(description = "Characteristic id")

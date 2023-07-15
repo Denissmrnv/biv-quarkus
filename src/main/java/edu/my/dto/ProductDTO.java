@@ -11,7 +11,6 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Schema(name = "ProductDTO", description = "Product representation")
 public class ProductDTO {
     @Schema(description = "Product id")

@@ -10,11 +10,9 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Schema(name = "CategoryDTO", description = "Category representation")
 public class CategoryDTO {
     @Schema(description = "Category id")
-//    @SecureField(rolesAllowed = "admin")
     private Long id;
     @NotNull
     @Schema(description = "Category name")

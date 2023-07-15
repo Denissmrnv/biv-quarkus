@@ -11,7 +11,6 @@ import java.util.Set;
 @Table(name = "products")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Product extends PanacheEntityBase {
     @Id

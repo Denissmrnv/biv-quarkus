@@ -9,7 +9,6 @@ import lombok.*;
 @Table(name = "characteristics")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Characteristic extends PanacheEntityBase {
     @Id

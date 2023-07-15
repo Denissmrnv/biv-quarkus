@@ -8,7 +8,6 @@ import lombok.*;
 @Table(name = "categories")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Category extends PanacheEntityBase {
     @Id
