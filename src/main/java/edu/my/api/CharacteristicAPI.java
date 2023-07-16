@@ -1,6 +1,6 @@
 package edu.my.api;
 
-import edu.my.dto.CharacteristicDTO;
+import edu.my.dto.characteristic.CharacteristicDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;

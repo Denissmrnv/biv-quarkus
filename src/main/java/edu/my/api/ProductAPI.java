@@ -1,6 +1,6 @@
 package edu.my.api;
 
-import edu.my.dto.ProductDTO;
+import edu.my.dto.product.ProductDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;

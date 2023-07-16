@@ -1,6 +1,6 @@
 package edu.my.mapper;
 
-import edu.my.dto.CategoryDTO;
+import edu.my.dto.category.CategoryDTO;
 import edu.my.entity.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;

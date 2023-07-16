@@ -1,7 +1,7 @@
 package edu.my.controller;
 
 import edu.my.api.CategoryAPI;
-import edu.my.dto.CategoryDTO;
+import edu.my.dto.category.CategoryDTO;
 import edu.my.service.CategoryService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;

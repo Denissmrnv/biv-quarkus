@@ -1,8 +1,7 @@
 package edu.my.service.impl;
 
-import edu.my.dto.CategoryDTO;
+import edu.my.dto.category.CategoryDTO;
 import edu.my.mapper.CategoryMapper;
-import edu.my.mapper.ProductMapper;
 import edu.my.repository.CategoryRepository;
 import edu.my.entity.Category;
 import edu.my.service.CategoryService;

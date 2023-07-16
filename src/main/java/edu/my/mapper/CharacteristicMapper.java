@@ -1,12 +1,9 @@
 package edu.my.mapper;
 
-import edu.my.dto.CharacteristicDTO;
+import edu.my.dto.characteristic.CharacteristicDTO;
 import edu.my.entity.Characteristic;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 import java.util.Set;

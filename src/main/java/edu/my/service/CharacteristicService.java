@@ -1,6 +1,6 @@
 package edu.my.service;
 
-import edu.my.dto.CharacteristicDTO;
+import edu.my.dto.characteristic.CharacteristicDTO;
 import java.util.List;
 
 public interface CharacteristicService {

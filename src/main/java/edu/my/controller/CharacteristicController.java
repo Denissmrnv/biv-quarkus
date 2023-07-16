@@ -1,7 +1,7 @@
 package edu.my.controller;
 
 import edu.my.api.CharacteristicAPI;
-import edu.my.dto.CharacteristicDTO;
+import edu.my.dto.characteristic.CharacteristicDTO;
 import edu.my.service.CharacteristicService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;

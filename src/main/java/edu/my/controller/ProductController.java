@@ -1,7 +1,7 @@
 package edu.my.controller;
 
 import edu.my.api.ProductAPI;
-import edu.my.dto.ProductDTO;
+import edu.my.dto.product.ProductDTO;
 import edu.my.service.ProductService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;

@@ -1,12 +1,9 @@
 package edu.my.mapper;
 
-import edu.my.dto.ProductDTO;
+import edu.my.dto.product.ProductDTO;
 import edu.my.entity.Product;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 

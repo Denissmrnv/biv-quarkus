@@ -1,7 +1,6 @@
 package edu.my.service;
 
-import edu.my.dto.CategoryDTO;
-import edu.my.entity.Category;
+import edu.my.dto.category.CategoryDTO;
 
 import java.util.List;
 

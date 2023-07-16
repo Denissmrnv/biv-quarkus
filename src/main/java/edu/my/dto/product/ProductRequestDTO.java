@@ -1,9 +1,11 @@
-package edu.my.dto;
+package edu.my.dto.product;
 
+import edu.my.dto.characteristic.CharacteristicDTO;
 import edu.my.entity.Category;
-import edu.my.entity.Characteristic;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.util.Set;
@@ -11,10 +13,8 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@Schema(name = "ProductDTO", description = "Product representation")
-public class ProductDTO {
-    @Schema(description = "Product id")
-    private Long id;
+@Schema(name = "ProductRequestDTO", description = "Information for creating/updating a product")
+public class ProductRequestDTO {
     @NotNull
     @Schema(description = "Product name")
     private String name;

@@ -1,7 +1,6 @@
 package edu.my.service;
 
-import edu.my.dto.CharacteristicDTO;
-import edu.my.dto.ProductDTO;
+import edu.my.dto.product.ProductDTO;
 
 public interface ProductAndCategoryService {
     public void saveProductAndCharacteristic(ProductDTO productDTO);

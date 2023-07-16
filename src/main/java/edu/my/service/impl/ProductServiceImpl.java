@@ -1,11 +1,8 @@
 package edu.my.service.impl;
 
-import edu.my.dto.CategoryDTO;
-import edu.my.dto.CharacteristicDTO;
-import edu.my.dto.ProductDTO;
+import edu.my.dto.characteristic.CharacteristicDTO;
+import edu.my.dto.product.ProductDTO;
 import edu.my.entity.Characteristic;
-import edu.my.mapper.CategoryMapper;
-import edu.my.mapper.CharacteristicMapper;
 import edu.my.mapper.ProductMapper;
 import edu.my.repository.CharacteristicRepository;
 import edu.my.repository.ProductRepository;

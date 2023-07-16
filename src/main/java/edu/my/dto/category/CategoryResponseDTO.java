@@ -1,7 +1,6 @@
-package edu.my.dto;
+package edu.my.dto.category;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,8 +9,8 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Getter
 @Setter
 @NoArgsConstructor
-@Schema(name = "CategoryDTO", description = "Category representation")
-public class CategoryDTO {
+@Schema(name = "CategoryResponseDTO", description = "Category information")
+public class CategoryResponseDTO {
     @Schema(description = "Category id")
     private Long id;
     @NotNull
