@@ -17,7 +17,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @Path("/")
 @Tag(name = "Characteristic Resource", description = "Characteristic REST APIs")
-public interface CharacteristicApi {
+public interface CharacteristicAPI {
     @GET
     @Path("/characteristics")
     @Operation(

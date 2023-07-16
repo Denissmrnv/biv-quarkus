@@ -1,6 +1,6 @@
 package edu.my.controller;
 
-import edu.my.api.ProductApi;
+import edu.my.api.ProductAPI;
 import edu.my.dto.ProductDTO;
 import edu.my.service.ProductService;
 import jakarta.enterprise.context.RequestScoped;
@@ -16,7 +16,7 @@ import org.eclipse.microprofile.metrics.annotation.Timed;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Path("/")
-public class ProductController implements ProductApi {
+public class ProductController implements ProductAPI {
     @Inject
     ProductService productService;
 

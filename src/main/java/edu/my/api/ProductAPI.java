@@ -14,7 +14,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @Path("/")
 @Tag(name = "Product Resource", description = "Product REST APIs")
-public interface ProductApi {
+public interface ProductAPI {
     @GET
     @Path("/products")
     @Operation(

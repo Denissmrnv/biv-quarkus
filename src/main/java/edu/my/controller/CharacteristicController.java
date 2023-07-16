@@ -1,6 +1,6 @@
 package edu.my.controller;
 
-import edu.my.api.CharacteristicApi;
+import edu.my.api.CharacteristicAPI;
 import edu.my.dto.CharacteristicDTO;
 import edu.my.service.CharacteristicService;
 import jakarta.enterprise.context.RequestScoped;
@@ -16,7 +16,7 @@ import org.eclipse.microprofile.metrics.annotation.Timed;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Path("/")
-public class CharacteristicController implements CharacteristicApi {
+public class CharacteristicController implements CharacteristicAPI {
     @Inject
     CharacteristicService characteristicService;
 
