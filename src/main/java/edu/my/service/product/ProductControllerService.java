@@ -1,10 +1,10 @@
-package edu.my.service;
+package edu.my.service.product;
 
 import edu.my.dto.product.ProductDTO;
 
 import java.util.List;
 
-public interface ProductService {
+public interface ProductControllerService {
     public List<ProductDTO> getAllProducts();
     public ProductDTO getProduct(long id);
     public void deleteProduct(long id);

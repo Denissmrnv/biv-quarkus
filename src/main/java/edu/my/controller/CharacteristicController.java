@@ -2,7 +2,7 @@ package edu.my.controller;
 
 import edu.my.api.CharacteristicAPI;
 import edu.my.dto.characteristic.CharacteristicDTO;
-import edu.my.service.CharacteristicService;
+import edu.my.service.characteristic.CharacteristicControllerService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -18,7 +18,7 @@ import org.eclipse.microprofile.metrics.annotation.Timed;
 @Path("/")
 public class CharacteristicController implements CharacteristicAPI {
     @Inject
-    CharacteristicService characteristicService;
+    CharacteristicControllerService characteristicControllerService;
 
     @GET
     @Path("/characteristics")
@@ -26,7 +26,7 @@ public class CharacteristicController implements CharacteristicAPI {
     @Timed(name = "checksTimerGetAllCharacteristics", description = "A measure of how long it takes to complete a query of all characteristics.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response getAllCharacteristics()  {
-        return Response.ok(characteristicService.getAllCharacteristics()).build();
+        return Response.ok(characteristicControllerService.getAllCharacteristics()).build();
     }
 
     @GET
@@ -35,7 +35,7 @@ public class CharacteristicController implements CharacteristicAPI {
     @Timed(name = "checksTimerGetOneCharacteristic", description = "A measure of how long it takes to complete a query of one characteristic.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response getCharacteristicById(@PathParam("id") Long id)  {
-        return Response.ok(characteristicService.getCharacteristic(id)).build();
+        return Response.ok(characteristicControllerService.getCharacteristic(id)).build();
     }
 
     @POST
@@ -44,8 +44,8 @@ public class CharacteristicController implements CharacteristicAPI {
     @Timed(name = "checksTimerAddCharacteristic", description = "A measure of how long it takes to complete a characteristic addition.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response addCharacteristic(CharacteristicDTO characteristicDTO) {
-        characteristicService.saveCharacteristic(characteristicDTO);
-        return Response.status(Response.Status.CREATED).entity(characteristicService.getAllCharacteristics()).build();
+        characteristicControllerService.saveCharacteristic(characteristicDTO);
+        return Response.status(Response.Status.CREATED).entity(characteristicControllerService.getAllCharacteristics()).build();
     }
 
     @DELETE
@@ -54,7 +54,7 @@ public class CharacteristicController implements CharacteristicAPI {
     @Timed(name = "checksTimerDeleteCharacteristic", description = "A measure of how long it takes to complete a characteristic delete.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response deleteCharacteristic(@PathParam("id") long id) {
-        characteristicService.deleteCharacteristic(id);
+        characteristicControllerService.deleteCharacteristic(id);
         return Response.noContent().build();
     }
 
@@ -64,7 +64,7 @@ public class CharacteristicController implements CharacteristicAPI {
     @Timed(name = "checksTimerUpdateCharacteristic", description = "A measure of how long it takes to complete a characteristic update.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response updateCharacteristic(@PathParam("id") long id, CharacteristicDTO characteristicDTO) {
-        characteristicService.updateCharacteristic(id, characteristicDTO);
-        return Response.ok(characteristicService.getAllCharacteristics()).build();
+        characteristicControllerService.updateCharacteristic(id, characteristicDTO);
+        return Response.ok(characteristicControllerService.getAllCharacteristics()).build();
     }
 }

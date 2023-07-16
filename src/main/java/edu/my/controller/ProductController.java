@@ -2,7 +2,7 @@ package edu.my.controller;
 
 import edu.my.api.ProductAPI;
 import edu.my.dto.product.ProductDTO;
-import edu.my.service.ProductService;
+import edu.my.service.product.ProductControllerService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -18,7 +18,7 @@ import org.eclipse.microprofile.metrics.annotation.Timed;
 @Path("/")
 public class ProductController implements ProductAPI {
     @Inject
-    ProductService productService;
+    ProductControllerService productControllerService;
 
     @GET
     @Path("/products")
@@ -26,7 +26,7 @@ public class ProductController implements ProductAPI {
     @Timed(name = "checksTimerGetAllProducts", description = "A measure of how long it takes to complete a query of all products.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response getAllProducts()  {
-        return Response.ok(productService.getAllProducts()).build();
+        return Response.ok(productControllerService.getAllProducts()).build();
     }
 
     @GET
@@ -35,7 +35,7 @@ public class ProductController implements ProductAPI {
     @Timed(name = "checksTimerGetOneProduct", description = "A measure of how long it takes to complete a query of one product.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response getProductById(@PathParam("id") Long id)  {
-        return Response.ok(productService.getProduct(id)).build();
+        return Response.ok(productControllerService.getProduct(id)).build();
     }
 
     @POST
@@ -44,8 +44,8 @@ public class ProductController implements ProductAPI {
     @Timed(name = "checksTimerAddProduct", description = "A measure of how long it takes to complete a product addition.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response addProduct(ProductDTO productDTO) {
-        productService.saveProduct(productDTO);
-        return Response.status(Response.Status.CREATED).entity(productService.getAllProducts()).build();
+        productControllerService.saveProduct(productDTO);
+        return Response.status(Response.Status.CREATED).entity(productControllerService.getAllProducts()).build();
     }
 
     @DELETE
@@ -54,7 +54,7 @@ public class ProductController implements ProductAPI {
     @Timed(name = "checksTimerDeleteProduct", description = "A measure of how long it takes to complete a product delete.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response deleteProduct(@PathParam("id") long id) {
-        productService.deleteProduct(id);
+        productControllerService.deleteProduct(id);
         return Response.noContent().build();
     }
 
@@ -64,7 +64,7 @@ public class ProductController implements ProductAPI {
     @Timed(name = "checksTimerUpdateProduct", description = "A measure of how long it takes to complete a product update.", unit = MetricUnits.MILLISECONDS)
     @Override
     public String updateProduct(@PathParam("id") long id, ProductDTO productDTO) {
-        productService.updateProduct(id, productDTO);
+        productControllerService.updateProduct(id, productDTO);
         return "Product is updated";
     }
 
@@ -74,7 +74,7 @@ public class ProductController implements ProductAPI {
     @Timed(name = "checksTimerDddOneHundredProduct", description = "A measure of how long it takes to complete a one hundred products addition.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response addOneHundredProduct(ProductDTO productDTO) {
-        productService.saveOneHundredProduct(productDTO);
-        return Response.status(Response.Status.CREATED).entity(productService.getAllProducts()).build();
+        productControllerService.saveOneHundredProduct(productDTO);
+        return Response.status(Response.Status.CREATED).entity(productControllerService.getAllProducts()).build();
     }
 }

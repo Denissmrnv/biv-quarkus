@@ -1,4 +1,4 @@
-package edu.my.service.impl;
+package edu.my.service.product;
 
 import edu.my.dto.characteristic.CharacteristicDTO;
 import edu.my.dto.product.ProductDTO;
@@ -7,7 +7,6 @@ import edu.my.mapper.ProductMapper;
 import edu.my.repository.CharacteristicRepository;
 import edu.my.repository.ProductRepository;
 import edu.my.entity.Product;
-import edu.my.service.ProductService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @ApplicationScoped
-public class ProductServiceImpl implements ProductService {
+public class ProductService {
     @Inject
     ProductRepository productRepository;
     @Inject
@@ -24,23 +23,19 @@ public class ProductServiceImpl implements ProductService {
     @Inject
     CharacteristicRepository characteristicRepository;
 
-    @Override
     public List<ProductDTO> getAllProducts() {
         return productMapper.toDTO(productRepository.findAll().list());
     }
 
-    @Override
     public ProductDTO getProduct(long id) {
         return productMapper.toDTO(productRepository.findById(id));
     }
 
-    @Override
     @Transactional
     public void deleteProduct(long id) {
         productRepository.deleteById(id);
     }
 
-    @Override
     @Transactional
     public void updateProduct(long id, ProductDTO productDTO) {
         Product product = productRepository.findById(id);
@@ -60,7 +55,6 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    @Override
     @Transactional
     public void saveProduct(ProductDTO productDTO) {
         Product product = productMapper.toEntity(productDTO);
@@ -71,7 +65,6 @@ public class ProductServiceImpl implements ProductService {
         productRepository.persist(product);
     }
 
-    @Override
     @Transactional
     public void saveOneHundredProduct(ProductDTO productDTO) {
         for (int i = 0; i < 100; i++) {

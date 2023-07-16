@@ -1,11 +1,11 @@
-package edu.my.service;
+package edu.my.service.category;
 
 import edu.my.dto.category.CategoryDTO;
 
 import java.util.List;
 
 
-public interface CategoryService {
+public interface CategoryControllerService {
     public List<CategoryDTO> getAllCategories();
     public CategoryDTO getCategory(long id);
     public void deleteCategory(long id);

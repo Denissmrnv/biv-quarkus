@@ -2,7 +2,7 @@ package edu.my.controller;
 
 import edu.my.api.CategoryAPI;
 import edu.my.dto.category.CategoryDTO;
-import edu.my.service.CategoryService;
+import edu.my.service.category.CategoryControllerService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -18,7 +18,7 @@ import org.eclipse.microprofile.metrics.annotation.Timed;
 @Path("/")
 public class CategoryController implements CategoryAPI {
     @Inject
-    CategoryService categoryService;
+    CategoryControllerService categoryControllerService;
 
     @GET
     @Path("/categories")
@@ -26,7 +26,7 @@ public class CategoryController implements CategoryAPI {
     @Timed(name = "checksTimerGetAllCategories", description = "A measure of how long it takes to complete a query of all categories.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response getAllCategories()  {
-        return Response.ok(categoryService.getAllCategories()).build();
+        return Response.ok(categoryControllerService.getAllCategories()).build();
     }
 
     @GET
@@ -35,7 +35,7 @@ public class CategoryController implements CategoryAPI {
     @Timed(name = "checksTimerGetOneCategory", description = "A measure of how long it takes to complete a query of one category.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response getCategoryById(@PathParam("id") Long id)  {
-        return Response.ok(categoryService.getCategory(id)).build();
+        return Response.ok(categoryControllerService.getCategory(id)).build();
     }
 
     @POST
@@ -44,8 +44,8 @@ public class CategoryController implements CategoryAPI {
     @Timed(name = "checksTimerAddCategory", description = "A measure of how long it takes to complete a category addition.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response addCategory(CategoryDTO categoryDTO) {
-        categoryService.saveCategory(categoryDTO);
-        return Response.status(Response.Status.CREATED).entity(categoryService.getAllCategories()).build();
+        categoryControllerService.saveCategory(categoryDTO);
+        return Response.status(Response.Status.CREATED).entity(categoryControllerService.getAllCategories()).build();
     }
 
     @DELETE
@@ -54,7 +54,7 @@ public class CategoryController implements CategoryAPI {
     @Timed(name = "checksTimerDeleteCategory", description = "A measure of how long it takes to complete a category delete.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response deleteCategory(@PathParam("id") long id) {
-        categoryService.deleteCategory(id);
+        categoryControllerService.deleteCategory(id);
         return Response.noContent().build();
     }
 
@@ -64,7 +64,7 @@ public class CategoryController implements CategoryAPI {
     @Timed(name = "checksTimerUpdateCategory", description = "A measure of how long it takes to complete a category update.", unit = MetricUnits.MILLISECONDS)
     @Override
     public Response updateCategory(@PathParam("id") long id, CategoryDTO categoryDTO) {
-        categoryService.updateCategory(id, categoryDTO);
+        categoryControllerService.updateCategory(id, categoryDTO);
         return Response.ok(categoryDTO).build();
     }
 }
