@@ -1,7 +1,6 @@
 package edu.my.service.category;
 
-import edu.my.dto.category.CategoryDTO;
-import edu.my.mapper.CategoryMapper;
+import edu.my.dto.category.CategoryRequestDTO;
 import edu.my.repository.CategoryRepository;
 import edu.my.entity.Category;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -14,15 +13,13 @@ import java.util.List;
 public class CategoryService {
     @Inject
     CategoryRepository categoryRepository;
-    @Inject
-    CategoryMapper categoryMapper;
 
-    public List<CategoryDTO> getAllCategories() {
-        return categoryMapper.toDTO(categoryRepository.findAll().list());
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll().list();
     }
 
-    public CategoryDTO getCategory(long id) {
-        return categoryMapper.toDTO(categoryRepository.findById(id));
+    public Category getCategory(long id) {
+        return categoryRepository.findById(id);
     }
 
     @Transactional
@@ -31,13 +28,14 @@ public class CategoryService {
     }
 
     @Transactional
-    public void updateCategory(long id, CategoryDTO categoryDTO) {
+    public void updateCategory(long id, Category category) {
         Category categorySearch = categoryRepository.findById(id);
-        categorySearch.setName(categoryDTO.getName());
+        categorySearch.setName(category.getName());
+        categorySearch.setCode(category.getCode());
     }
 
     @Transactional
-    public void saveCategory(CategoryDTO categoryDTO) {
-        categoryRepository.persist(categoryMapper.toEntity(categoryDTO));
+    public void saveCategory(Category category) {
+        categoryRepository.persist(category);
     }
 }

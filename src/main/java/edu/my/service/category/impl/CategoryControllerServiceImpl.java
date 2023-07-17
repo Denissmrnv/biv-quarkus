@@ -1,6 +1,8 @@
 package edu.my.service.category.impl;
 
-import edu.my.dto.category.CategoryDTO;
+import edu.my.dto.category.CategoryRequestDTO;
+import edu.my.dto.category.CategoryResponseDTO;
+import edu.my.mapper.CategoryMapper;
 import edu.my.service.category.CategoryControllerService;
 import edu.my.service.category.CategoryService;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -12,15 +14,17 @@ import java.util.List;
 public class CategoryControllerServiceImpl implements CategoryControllerService {
     @Inject
     CategoryService categoryService;
+    @Inject
+    CategoryMapper categoryMapper;
 
     @Override
-    public List<CategoryDTO> getAllCategories() {
-        return categoryService.getAllCategories();
+    public List<CategoryResponseDTO> getAllCategories() {
+        return categoryMapper.toResponseDTO(categoryService.getAllCategories());
     }
 
     @Override
-    public CategoryDTO getCategory(long id) {
-        return categoryService.getCategory(id);
+    public CategoryResponseDTO getCategory(long id) {
+        return categoryMapper.toResponseDTO(categoryService.getCategory(id));
     }
 
     @Override
@@ -29,12 +33,12 @@ public class CategoryControllerServiceImpl implements CategoryControllerService 
     }
 
     @Override
-    public void updateCategory(long id, CategoryDTO categoryDTO) {
-        categoryService.updateCategory(id, categoryDTO);
+    public void updateCategory(long id, CategoryRequestDTO categoryRequestDTO) {
+        categoryService.updateCategory(id, categoryMapper.toEntity(categoryRequestDTO));
     }
 
     @Override
-    public void saveCategory(CategoryDTO categoryDTO) {
-        categoryService.saveCategory(categoryDTO);
+    public void saveCategory(CategoryRequestDTO categoryRequestDTO) {
+        categoryService.saveCategory(categoryMapper.toEntity(categoryRequestDTO));
     }
 }

@@ -1,7 +1,7 @@
 package edu.my.controller;
 
 import edu.my.api.CategoryAPI;
-import edu.my.dto.category.CategoryDTO;
+import edu.my.dto.category.CategoryRequestDTO;
 import edu.my.service.category.CategoryControllerService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
@@ -43,8 +43,8 @@ public class CategoryController implements CategoryAPI {
     @Counted(name = "performedChecksAddCategory", description = "How many category additions have been made.")
     @Timed(name = "checksTimerAddCategory", description = "A measure of how long it takes to complete a category addition.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public Response addCategory(CategoryDTO categoryDTO) {
-        categoryControllerService.saveCategory(categoryDTO);
+    public Response addCategory(CategoryRequestDTO categoryRequestDTO) {
+        categoryControllerService.saveCategory(categoryRequestDTO);
         return Response.status(Response.Status.CREATED).entity(categoryControllerService.getAllCategories()).build();
     }
 
@@ -63,8 +63,8 @@ public class CategoryController implements CategoryAPI {
     @Counted(name = "performedChecksUpdateCategory", description = "How many category updated have been made.")
     @Timed(name = "checksTimerUpdateCategory", description = "A measure of how long it takes to complete a category update.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public Response updateCategory(@PathParam("id") long id, CategoryDTO categoryDTO) {
-        categoryControllerService.updateCategory(id, categoryDTO);
-        return Response.ok(categoryDTO).build();
+    public Response updateCategory(@PathParam("id") long id, CategoryRequestDTO categoryRequestDTO) {
+        categoryControllerService.updateCategory(id, categoryRequestDTO);
+        return Response.ok(categoryRequestDTO).build();
     }
 }

@@ -1,6 +1,7 @@
 package edu.my.api;
 
-import edu.my.dto.category.CategoryDTO;
+import edu.my.dto.category.CategoryRequestDTO;
+import edu.my.dto.category.CategoryResponseDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -25,7 +26,7 @@ public interface CategoryAPI {
             description = "Operation completed",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = CategoryDTO.class)
+                    schema = @Schema(implementation = CategoryResponseDTO.class)
             )
     )
     @GET
@@ -43,7 +44,7 @@ public interface CategoryAPI {
             responseCode = "200",
             description = "Operation completed",
             content = @Content(mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = CategoryDTO.class)
+                    schema = @Schema(implementation = CategoryResponseDTO.class)
             )
     )
     Response getCategoryById(
@@ -66,7 +67,7 @@ public interface CategoryAPI {
             description = "Category is added",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = CategoryDTO.class)
+                    schema = @Schema(implementation = CategoryResponseDTO.class)
             )
     )
     Response addCategory(
@@ -75,10 +76,10 @@ public interface CategoryAPI {
                     required = true,
                     content = @Content(
                             mediaType = MediaType.APPLICATION_JSON,
-                            schema = @Schema(implementation = CategoryDTO.class)
+                            schema = @Schema(implementation = CategoryRequestDTO.class)
                     )
             )
-            CategoryDTO categoryDTO);
+            CategoryRequestDTO categoryRequestDTO);
 
     @DELETE
     @Path("/categories/{id}")
@@ -92,7 +93,7 @@ public interface CategoryAPI {
             description = "Category is deleted",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = CategoryDTO.class)
+                    schema = @Schema(implementation = CategoryResponseDTO.class)
             )
     )
     Response deleteCategory(
@@ -115,7 +116,7 @@ public interface CategoryAPI {
             description = "Category is updated",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = CategoryDTO.class)
+                    schema = @Schema(implementation = CategoryResponseDTO.class)
             )
     )
     Response updateCategory(
@@ -128,5 +129,5 @@ public interface CategoryAPI {
                     description = "Updated Category",
                     required = true
             )
-            CategoryDTO categoryDTO);
+            CategoryRequestDTO categoryRequestDTO);
 }
