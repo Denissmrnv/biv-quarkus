@@ -1,7 +1,7 @@
 package edu.my.controller;
 
 import edu.my.api.CharacteristicAPI;
-import edu.my.dto.characteristic.CharacteristicDTO;
+import edu.my.dto.characteristic.CharacteristicRequestDTO;
 import edu.my.service.characteristic.CharacteristicControllerService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
@@ -43,8 +43,8 @@ public class CharacteristicController implements CharacteristicAPI {
     @Counted(name = "performedChecksAddCharacteristic", description = "How many characteristic additions have been made.")
     @Timed(name = "checksTimerAddCharacteristic", description = "A measure of how long it takes to complete a characteristic addition.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public Response addCharacteristic(CharacteristicDTO characteristicDTO) {
-        characteristicControllerService.saveCharacteristic(characteristicDTO);
+    public Response addCharacteristic(CharacteristicRequestDTO characteristicRequestDTO) {
+        characteristicControllerService.saveCharacteristic(characteristicRequestDTO);
         return Response.status(Response.Status.CREATED).entity(characteristicControllerService.getAllCharacteristics()).build();
     }
 
@@ -63,8 +63,8 @@ public class CharacteristicController implements CharacteristicAPI {
     @Counted(name = "performedChecksUpdateCharacteristic", description = "How many characteristic updated have been made.")
     @Timed(name = "checksTimerUpdateCharacteristic", description = "A measure of how long it takes to complete a characteristic update.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public Response updateCharacteristic(@PathParam("id") long id, CharacteristicDTO characteristicDTO) {
-        characteristicControllerService.updateCharacteristic(id, characteristicDTO);
+    public Response updateCharacteristic(@PathParam("id") long id, CharacteristicRequestDTO characteristicRequestDTO) {
+        characteristicControllerService.updateCharacteristic(id, characteristicRequestDTO);
         return Response.ok(characteristicControllerService.getAllCharacteristics()).build();
     }
 }

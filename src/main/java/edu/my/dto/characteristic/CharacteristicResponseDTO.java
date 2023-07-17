@@ -1,5 +1,6 @@
 package edu.my.dto.characteristic;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.my.entity.Product;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -21,5 +22,6 @@ public class CharacteristicResponseDTO {
     @Schema(description = "Characteristic meaning")
     private String meaning;
     @Schema(description = "Characteristic object Product")
+    @JsonIgnore
     private Product product;
 }

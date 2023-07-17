@@ -1,6 +1,7 @@
 package edu.my.api;
 
-import edu.my.dto.characteristic.CharacteristicDTO;
+import edu.my.dto.characteristic.CharacteristicRequestDTO;
+import edu.my.dto.characteristic.CharacteristicResponseDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -30,7 +31,7 @@ public interface CharacteristicAPI {
             description = "Operation completed",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = CharacteristicDTO.class)
+                    schema = @Schema(implementation = CharacteristicResponseDTO.class)
             )
     )
     Response getAllCharacteristics();
@@ -47,7 +48,7 @@ public interface CharacteristicAPI {
             description = "Operation completed",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = CharacteristicDTO.class)
+                    schema = @Schema(implementation = CharacteristicResponseDTO.class)
             )
     )
     Response getCharacteristicById(
@@ -70,16 +71,16 @@ public interface CharacteristicAPI {
             description = "Characteristic is added",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = CharacteristicDTO.class)
+                    schema = @Schema(implementation = CharacteristicResponseDTO.class)
             )
     )
     Response addCharacteristic(
             @RequestBody(
                     description = "Characteristic to create",
                     required = true,
-                    content = @Content(schema = @Schema(implementation = CharacteristicDTO.class))
+                    content = @Content(schema = @Schema(implementation = CharacteristicRequestDTO.class))
             )
-            CharacteristicDTO characteristicDTO
+            CharacteristicRequestDTO characteristicRequestDTO
     );
 
     @DELETE
@@ -94,7 +95,7 @@ public interface CharacteristicAPI {
             description = "Characteristic is deleted",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = CharacteristicDTO.class)
+                    schema = @Schema(implementation = CharacteristicResponseDTO.class)
             )
     )
     Response deleteCharacteristic(
@@ -119,7 +120,7 @@ public interface CharacteristicAPI {
             description = "Characteristic is updated",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = CharacteristicDTO.class)
+                    schema = @Schema(implementation = CharacteristicResponseDTO.class)
             )
     )
     Response updateCharacteristic(
@@ -130,8 +131,9 @@ public interface CharacteristicAPI {
             @PathParam("id") long id,
             @Parameter(
                     description = "Updated Characteristic",
-                    required = true
+                    required = true,
+                    content = @Content(schema = @Schema(implementation = CharacteristicRequestDTO.class))
             )
-            CharacteristicDTO characteristicDTO
+            CharacteristicRequestDTO characteristicRequestDTO
     );
 }

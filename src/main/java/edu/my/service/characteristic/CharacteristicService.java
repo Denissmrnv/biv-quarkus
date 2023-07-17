@@ -1,7 +1,5 @@
 package edu.my.service.characteristic;
 
-import edu.my.dto.characteristic.CharacteristicDTO;
-import edu.my.mapper.CharacteristicMapper;
 import edu.my.repository.CharacteristicRepository;
 import edu.my.entity.Characteristic;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -14,15 +12,13 @@ import java.util.List;
 public class CharacteristicService {
     @Inject
     CharacteristicRepository characteristicRepository;
-    @Inject
-    CharacteristicMapper characteristicMapper;
 
-    public List<CharacteristicDTO> getAllCharacteristics() {
-        return characteristicMapper.toDTO(characteristicRepository.findAll().list());
+    public List<Characteristic> getAllCharacteristics() {
+        return characteristicRepository.findAll().list();
     }
 
-    public CharacteristicDTO getCharacteristic(long id) {
-        return characteristicMapper.toDTO(characteristicRepository.findById(id));
+    public Characteristic getCharacteristic(long id) {
+        return characteristicRepository.findById(id);
     }
     
     @Transactional
@@ -31,15 +27,15 @@ public class CharacteristicService {
     }
 
     @Transactional
-    public void updateCharacteristic(long id, CharacteristicDTO characteristicDTO) {
+    public void updateCharacteristic(long id, Characteristic characteristic) {
         Characteristic  characteristicSearch = characteristicRepository.findById(id);
-        characteristicSearch.setName(characteristicDTO.getName());
-        characteristicSearch.setMeaning(characteristicDTO.getMeaning());
-        characteristicSearch.setProduct(characteristicDTO.getProduct());
+        characteristicSearch.setName(characteristic.getName());
+        characteristicSearch.setMeaning(characteristic.getMeaning());
+        characteristicSearch.setProduct(characteristic.getProduct());
     }
 
     @Transactional
-    public void saveCharacteristic(CharacteristicDTO characteristicDTO) {
-        characteristicRepository.persist(characteristicMapper.toEntity(characteristicDTO));
+    public void saveCharacteristic(Characteristic characteristic) {
+        characteristicRepository.persist(characteristic);
     }
 }
