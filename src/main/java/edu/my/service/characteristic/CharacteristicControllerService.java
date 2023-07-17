@@ -4,9 +4,9 @@ import edu.my.dto.characteristic.CharacteristicDTO;
 import java.util.List;
 
 public interface CharacteristicControllerService {
-    public List<CharacteristicDTO> getAllCharacteristics();
-    public CharacteristicDTO getCharacteristic(long id);
-    public void deleteCharacteristic(long id);
-    public void updateCharacteristic(long id, CharacteristicDTO characteristicDTO);
-    public void saveCharacteristic(CharacteristicDTO characteristicDTO);
+    List<CharacteristicDTO> getAllCharacteristics();
+    CharacteristicDTO getCharacteristic(long id);
+    void deleteCharacteristic(long id);
+    void updateCharacteristic(long id, CharacteristicDTO characteristicDTO);
+    void saveCharacteristic(CharacteristicDTO characteristicDTO);
 }

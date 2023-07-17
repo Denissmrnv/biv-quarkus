@@ -1,6 +1,7 @@
 package edu.my.api;
 
-import edu.my.dto.product.ProductDTO;
+import edu.my.dto.product.ProductRequestDTO;
+import edu.my.dto.product.ProductResponseDTO;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -27,7 +28,7 @@ public interface ProductAPI {
             description = "Operation completed",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = ProductDTO.class)
+                    schema = @Schema(implementation = ProductResponseDTO.class)
             )
     )
     Response getAllProducts();
@@ -44,7 +45,7 @@ public interface ProductAPI {
             description = "Operation completed",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = ProductDTO.class)
+                    schema = @Schema(implementation = ProductResponseDTO.class)
             )
     )
     Response getProductById(
@@ -67,16 +68,16 @@ public interface ProductAPI {
             description = "Product is added",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = ProductDTO.class)
+                    schema = @Schema(implementation = ProductResponseDTO.class)
             )
     )
     Response addProduct(
             @RequestBody(
                     description = "Product to create",
                     required = true,
-                    content = @Content(schema = @Schema(implementation = ProductDTO.class))
+                    content = @Content(schema = @Schema(implementation = ProductRequestDTO.class))
             )
-            ProductDTO productDTO
+            ProductRequestDTO productRequestDTO
     );
 
     @DELETE
@@ -91,7 +92,7 @@ public interface ProductAPI {
             description = "Product is deleted",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = ProductDTO.class)
+                    schema = @Schema(implementation = ProductResponseDTO.class)
             )
     )
     Response deleteProduct(
@@ -114,7 +115,7 @@ public interface ProductAPI {
             description = "Product is updated",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = ProductDTO.class)
+                    schema = @Schema(implementation = ProductResponseDTO.class)
             )
     )
     String updateProduct(
@@ -127,7 +128,7 @@ public interface ProductAPI {
                     description = "Updated Product",
                     required = true
             )
-            ProductDTO productDTO
+            ProductRequestDTO productRequestDTO
     );
 
     @POST
@@ -142,15 +143,19 @@ public interface ProductAPI {
             description = "One hundred products is added",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
-                    schema = @Schema(implementation = ProductDTO.class)
+                    schema = @Schema(implementation = ProductResponseDTO.class)
             )
     )
     Response addOneHundredProduct(
             @RequestBody(
                     description = "Product to create",
                     required = true,
-                    content = @Content(schema = @Schema(implementation = ProductDTO.class))
+                    content = @Content(schema = @Schema(implementation = ProductResponseDTO.class))
             )
-            ProductDTO productDTO
+            @Parameter(
+                    description = "added Product",
+                    required = true
+            )
+            ProductRequestDTO productRequestDTO
     );
 }

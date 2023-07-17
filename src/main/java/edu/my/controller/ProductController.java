@@ -1,7 +1,7 @@
 package edu.my.controller;
 
 import edu.my.api.ProductAPI;
-import edu.my.dto.product.ProductDTO;
+import edu.my.dto.product.ProductRequestDTO;
 import edu.my.service.product.ProductControllerService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
@@ -43,8 +43,8 @@ public class ProductController implements ProductAPI {
     @Counted(name = "performedChecksAddProduct", description = "How many product additions have been made.")
     @Timed(name = "checksTimerAddProduct", description = "A measure of how long it takes to complete a product addition.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public Response addProduct(ProductDTO productDTO) {
-        productControllerService.saveProduct(productDTO);
+    public Response addProduct(ProductRequestDTO productRequestDTO) {
+        productControllerService.saveProduct(productRequestDTO);
         return Response.status(Response.Status.CREATED).entity(productControllerService.getAllProducts()).build();
     }
 
@@ -63,8 +63,8 @@ public class ProductController implements ProductAPI {
     @Counted(name = "performedChecksUpdateProduct", description = "How many product updated have been made.")
     @Timed(name = "checksTimerUpdateProduct", description = "A measure of how long it takes to complete a product update.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public String updateProduct(@PathParam("id") long id, ProductDTO productDTO) {
-        productControllerService.updateProduct(id, productDTO);
+    public String updateProduct(@PathParam("id") long id, ProductRequestDTO productRequestDTO) {
+        productControllerService.updateProduct(id, productRequestDTO);
         return "Product is updated";
     }
 
@@ -73,8 +73,8 @@ public class ProductController implements ProductAPI {
     @Counted(name = "performedChecksAddOneHundredProduct", description = "How many one hundred products additions have been made.")
     @Timed(name = "checksTimerDddOneHundredProduct", description = "A measure of how long it takes to complete a one hundred products addition.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public Response addOneHundredProduct(ProductDTO productDTO) {
-        productControllerService.saveOneHundredProduct(productDTO);
+    public Response addOneHundredProduct(ProductRequestDTO productRequestDTO) {
+        productControllerService.saveOneHundredProduct(productRequestDTO);
         return Response.status(Response.Status.CREATED).entity(productControllerService.getAllProducts()).build();
     }
 }

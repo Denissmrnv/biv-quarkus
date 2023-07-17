@@ -31,5 +31,4 @@ public interface CategoryMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "code", source = "code")
     Category toEntity(CategoryRequestDTO categoryRequestDTO);
-
 }
