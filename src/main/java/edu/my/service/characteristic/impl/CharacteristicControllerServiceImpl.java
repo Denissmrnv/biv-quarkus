@@ -3,10 +3,12 @@ package edu.my.service.characteristic.impl;
 import edu.my.dto.characteristic.CharacteristicDTO;
 import edu.my.service.characteristic.CharacteristicControllerService;
 import edu.my.service.characteristic.CharacteristicService;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.util.List;
 
+@ApplicationScoped
 public class CharacteristicControllerServiceImpl implements CharacteristicControllerService {
     @Inject
     CharacteristicService characteristicService;

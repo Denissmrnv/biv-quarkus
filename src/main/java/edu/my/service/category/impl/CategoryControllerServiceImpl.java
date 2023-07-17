@@ -3,10 +3,12 @@ package edu.my.service.category.impl;
 import edu.my.dto.category.CategoryDTO;
 import edu.my.service.category.CategoryControllerService;
 import edu.my.service.category.CategoryService;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.util.List;
 
+@ApplicationScoped
 public class CategoryControllerServiceImpl implements CategoryControllerService {
     @Inject
     CategoryService categoryService;

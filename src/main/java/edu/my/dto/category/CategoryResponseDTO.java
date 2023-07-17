@@ -16,4 +16,7 @@ public class CategoryResponseDTO {
     @NotNull
     @Schema(description = "Category name")
     private String name;
+    @Schema(description = "Category code")
+    @NotNull
+    private Long code;
 }

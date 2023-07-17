@@ -2,6 +2,7 @@ package edu.my.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -16,4 +17,6 @@ public class Category extends PanacheEntityBase {
     private Long id;
     @Column(name = "name")
     private String name;
+    @Column(name="code")
+    private Long code;
 }

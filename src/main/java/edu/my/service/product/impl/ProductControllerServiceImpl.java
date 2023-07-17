@@ -3,10 +3,12 @@ package edu.my.service.product.impl;
 import edu.my.dto.product.ProductDTO;
 import edu.my.service.product.ProductControllerService;
 import edu.my.service.product.ProductService;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.util.List;
 
+@ApplicationScoped
 public class ProductControllerServiceImpl implements ProductControllerService {
     @Inject
     ProductService productService;
