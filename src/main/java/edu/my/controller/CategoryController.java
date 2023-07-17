@@ -34,7 +34,7 @@ public class CategoryController implements CategoryAPI {
     @Counted(name = "performedChecksGetOneCategory", description = "How many requests of one category were made.")
     @Timed(name = "checksTimerGetOneCategory", description = "A measure of how long it takes to complete a query of one category.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public Response getCategoryById(@PathParam("id") Long id)  {
+    public Response getCategoryByCode(@PathParam("id") Long id)  {
         return Response.ok(categoryControllerService.getCategory(id)).build();
     }
 

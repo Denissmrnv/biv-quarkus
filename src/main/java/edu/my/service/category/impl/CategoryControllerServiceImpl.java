@@ -23,18 +23,18 @@ public class CategoryControllerServiceImpl implements CategoryControllerService 
     }
 
     @Override
-    public CategoryResponseDTO getCategory(long id) {
-        return categoryMapper.toResponseDTO(categoryService.getCategory(id));
+    public CategoryResponseDTO getCategory(long code) {
+        return categoryMapper.toResponseDTO(categoryService.getCategory(code));
     }
 
     @Override
-    public void deleteCategory(long id) {
-        categoryService.deleteCategory(id);
+    public void deleteCategory(long code) {
+        categoryService.deleteCategory(code);
     }
 
     @Override
-    public void updateCategory(long id, CategoryRequestDTO categoryRequestDTO) {
-        categoryService.updateCategory(id, categoryMapper.toEntity(categoryRequestDTO));
+    public void updateCategory(long code, CategoryRequestDTO categoryRequestDTO) {
+        categoryService.updateCategory(code, categoryMapper.toEntity(categoryRequestDTO));
     }
 
     @Override

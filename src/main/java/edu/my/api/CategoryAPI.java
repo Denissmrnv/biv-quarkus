@@ -36,7 +36,7 @@ public interface CategoryAPI {
     @GET
     @Path("/categories/{id}")
     @Operation(
-            operationId = "getCategoryById",
+            operationId = "getCategoryByCode",
             summary = "Get Category by id",
             description = "Get one category inside the db"
     )
@@ -47,7 +47,7 @@ public interface CategoryAPI {
                     schema = @Schema(implementation = CategoryResponseDTO.class)
             )
     )
-    Response getCategoryById(
+    Response getCategoryByCode(
             @Parameter(
                     description = "Category id",
                     required = true

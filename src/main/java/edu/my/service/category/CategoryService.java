@@ -1,6 +1,5 @@
 package edu.my.service.category;
 
-import edu.my.dto.category.CategoryRequestDTO;
 import edu.my.repository.CategoryRepository;
 import edu.my.entity.Category;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -18,18 +17,19 @@ public class CategoryService {
         return categoryRepository.findAll().list();
     }
 
-    public Category getCategory(long id) {
-        return categoryRepository.findById(id);
+    @Transactional
+    public Category getCategory(long code) {
+        return categoryRepository.findByCode(code);
     }
 
     @Transactional
-    public void deleteCategory(long id) {
-        categoryRepository.deleteById(id);
+    public void deleteCategory(long code) {
+        categoryRepository.deleteByCode(code);
     }
 
     @Transactional
-    public void updateCategory(long id, Category category) {
-        Category categorySearch = categoryRepository.findById(id);
+    public void updateCategory(long code, Category category) {
+        Category categorySearch = categoryRepository.findByCode(code);
         categorySearch.setName(category.getName());
         categorySearch.setCode(category.getCode());
     }

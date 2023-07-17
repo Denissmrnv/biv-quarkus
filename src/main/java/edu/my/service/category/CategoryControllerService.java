@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface CategoryControllerService {
     List<CategoryResponseDTO> getAllCategories();
-    CategoryResponseDTO getCategory(long id);
-    void deleteCategory(long id);
-    void updateCategory(long id, CategoryRequestDTO categoryRequestDTO);
+    CategoryResponseDTO getCategory(long code);
+    void deleteCategory(long code);
+    void updateCategory(long code, CategoryRequestDTO categoryRequestDTO);
     void saveCategory(CategoryRequestDTO categoryRequestDTO);
 }
