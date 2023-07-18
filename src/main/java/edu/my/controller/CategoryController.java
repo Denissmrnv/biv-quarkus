@@ -15,13 +15,10 @@ import org.eclipse.microprofile.metrics.annotation.Timed;
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/")
 public class CategoryController implements CategoryAPI {
     @Inject
     CategoryControllerService categoryControllerService;
 
-    @GET
-    @Path("/categories")
     @Counted(name = "performedChecksGetAllCategories", description = "How many requests of all categories were made.")
     @Timed(name = "checksTimerGetAllCategories", description = "A measure of how long it takes to complete a query of all categories.", unit = MetricUnits.MILLISECONDS)
     @Override
@@ -29,8 +26,6 @@ public class CategoryController implements CategoryAPI {
         return Response.ok(categoryControllerService.getAllCategories()).build();
     }
 
-    @GET
-    @Path("/categories/{id}")
     @Counted(name = "performedChecksGetOneCategory", description = "How many requests of one category were made.")
     @Timed(name = "checksTimerGetOneCategory", description = "A measure of how long it takes to complete a query of one category.", unit = MetricUnits.MILLISECONDS)
     @Override
@@ -38,8 +33,6 @@ public class CategoryController implements CategoryAPI {
         return Response.ok(categoryControllerService.getCategory(id)).build();
     }
 
-    @POST
-    @Path("/categories")
     @Counted(name = "performedChecksAddCategory", description = "How many category additions have been made.")
     @Timed(name = "checksTimerAddCategory", description = "A measure of how long it takes to complete a category addition.", unit = MetricUnits.MILLISECONDS)
     @Override
@@ -48,8 +41,6 @@ public class CategoryController implements CategoryAPI {
         return Response.status(Response.Status.CREATED).entity(categoryControllerService.getAllCategories()).build();
     }
 
-    @DELETE
-    @Path("/categories/{id}")
     @Counted(name = "performedChecksDeleteCategory", description = "How many category deleted have been made.")
     @Timed(name = "checksTimerDeleteCategory", description = "A measure of how long it takes to complete a category delete.", unit = MetricUnits.MILLISECONDS)
     @Override
@@ -58,8 +49,6 @@ public class CategoryController implements CategoryAPI {
         return Response.noContent().build();
     }
 
-    @PUT
-    @Path("/categories/{id}")
     @Counted(name = "performedChecksUpdateCategory", description = "How many category updated have been made.")
     @Timed(name = "checksTimerUpdateCategory", description = "A measure of how long it takes to complete a category update.", unit = MetricUnits.MILLISECONDS)
     @Override

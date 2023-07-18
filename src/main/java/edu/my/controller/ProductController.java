@@ -15,13 +15,10 @@ import org.eclipse.microprofile.metrics.annotation.Timed;
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/")
 public class ProductController implements ProductAPI {
     @Inject
     ProductControllerService productControllerService;
 
-    @GET
-    @Path("/products")
     @Counted(name = "performedChecksGetAllProducts", description = "How many requests of all products were made.")
     @Timed(name = "checksTimerGetAllProducts", description = "A measure of how long it takes to complete a query of all products.", unit = MetricUnits.MILLISECONDS)
     @Override
@@ -29,8 +26,6 @@ public class ProductController implements ProductAPI {
         return Response.ok(productControllerService.getAllProducts()).build();
     }
 
-    @GET
-    @Path("/products/{id}")
     @Counted(name = "performedChecksGetOneProduct", description = "How many requests of one product were made.")
     @Timed(name = "checksTimerGetOneProduct", description = "A measure of how long it takes to complete a query of one product.", unit = MetricUnits.MILLISECONDS)
     @Override
@@ -38,8 +33,6 @@ public class ProductController implements ProductAPI {
         return Response.ok(productControllerService.getProduct(id)).build();
     }
 
-    @POST
-    @Path("/products")
     @Counted(name = "performedChecksAddProduct", description = "How many product additions have been made.")
     @Timed(name = "checksTimerAddProduct", description = "A measure of how long it takes to complete a product addition.", unit = MetricUnits.MILLISECONDS)
     @Override
@@ -48,8 +41,6 @@ public class ProductController implements ProductAPI {
         return Response.status(Response.Status.CREATED).entity(productControllerService.getAllProducts()).build();
     }
 
-    @DELETE
-    @Path("/products/{id}")
     @Counted(name = "performedChecksDeleteProduct", description = "How many product deleted have been made.")
     @Timed(name = "checksTimerDeleteProduct", description = "A measure of how long it takes to complete a product delete.", unit = MetricUnits.MILLISECONDS)
     @Override
@@ -58,8 +49,6 @@ public class ProductController implements ProductAPI {
         return Response.noContent().build();
     }
 
-    @PUT
-    @Path("/products/{id}")
     @Counted(name = "performedChecksUpdateProduct", description = "How many product updated have been made.")
     @Timed(name = "checksTimerUpdateProduct", description = "A measure of how long it takes to complete a product update.", unit = MetricUnits.MILLISECONDS)
     @Override
@@ -68,8 +57,6 @@ public class ProductController implements ProductAPI {
         return "Product is updated";
     }
 
-    @POST
-    @Path("/products/addOneHundred")
     @Counted(name = "performedChecksAddOneHundredProduct", description = "How many one hundred products additions have been made.")
     @Timed(name = "checksTimerDddOneHundredProduct", description = "A measure of how long it takes to complete a one hundred products addition.", unit = MetricUnits.MILLISECONDS)
     @Override
