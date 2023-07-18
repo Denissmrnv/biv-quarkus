@@ -1,5 +1,6 @@
 package edu.my.dto.product;
 
+import edu.my.dto.category.CategoryResponseDTO;
 import edu.my.dto.characteristic.CharacteristicResponseDTO;
 import edu.my.entity.Category;
 import jakarta.validation.constraints.NotNull;
@@ -26,7 +27,7 @@ public class ProductResponseDTO {
     @Schema(description = "Product description")
     private String description;
     @Schema(description = "Product object Category")
-    private Category category;
+    private CategoryResponseDTO category;
     @Schema(description = "Product set of characteristic")
     private Set<CharacteristicResponseDTO> characteristicSet;
 }

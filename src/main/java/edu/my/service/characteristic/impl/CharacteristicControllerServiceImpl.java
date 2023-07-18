@@ -9,6 +9,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.util.List;
+import java.util.Set;
 
 @ApplicationScoped
 public class CharacteristicControllerServiceImpl implements CharacteristicControllerService {
@@ -18,7 +19,7 @@ public class CharacteristicControllerServiceImpl implements CharacteristicContro
     CharacteristicMapper characteristicMapper;
 
     @Override
-    public List<CharacteristicResponseDTO> getAllCharacteristics() {
+    public Set<CharacteristicResponseDTO> getAllCharacteristics() {
         return characteristicMapper.toResponseDTO(characteristicService.getAllCharacteristics());
     }
 

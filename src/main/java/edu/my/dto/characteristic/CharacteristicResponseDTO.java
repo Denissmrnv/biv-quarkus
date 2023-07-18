@@ -24,5 +24,5 @@ public class CharacteristicResponseDTO {
     private String meaning;
     @Schema(description = "Characteristic object Product")
     @JsonIgnore
-    private ProductResponseDTO productResponseDTO;
+    private ProductResponseDTO product;
 }

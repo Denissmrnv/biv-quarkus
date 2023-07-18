@@ -3,6 +3,7 @@ package edu.my.service.product.impl;
 import edu.my.dto.product.ProductRequestDTO;
 import edu.my.dto.product.ProductResponseDTO;
 import edu.my.mapper.ProductMapper;
+import edu.my.service.characteristic.CharacteristicService;
 import edu.my.service.product.ProductControllerService;
 import edu.my.service.product.ProductService;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -16,6 +17,9 @@ public class ProductControllerServiceImpl implements ProductControllerService {
     ProductService productService;
     @Inject
     ProductMapper productMapper;
+
+    @Inject
+    CharacteristicService characteristicService;
 
     @Override
     public List<ProductResponseDTO> getAllProducts() {

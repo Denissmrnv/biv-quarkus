@@ -6,15 +6,16 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @ApplicationScoped
 public class CharacteristicService {
     @Inject
     CharacteristicRepository characteristicRepository;
 
-    public List<Characteristic> getAllCharacteristics() {
-        return characteristicRepository.findAll().list();
+    public Set<Characteristic> getAllCharacteristics() {
+        return new HashSet<>(characteristicRepository.findAll().list());
     }
 
     public Characteristic getCharacteristic(long id) {

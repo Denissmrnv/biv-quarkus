@@ -4,9 +4,10 @@ import edu.my.dto.characteristic.CharacteristicRequestDTO;
 import edu.my.dto.characteristic.CharacteristicResponseDTO;
 
 import java.util.List;
+import java.util.Set;
 
 public interface CharacteristicControllerService {
-    List<CharacteristicResponseDTO> getAllCharacteristics();
+    Set<CharacteristicResponseDTO> getAllCharacteristics();
     CharacteristicResponseDTO getCharacteristic(long id);
     void deleteCharacteristic(long id);
     void updateCharacteristic(long id, CharacteristicRequestDTO characteristicRequestDTO);

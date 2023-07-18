@@ -5,42 +5,61 @@ import edu.my.dto.characteristic.CharacteristicResponseDTO;
 import edu.my.entity.Characteristic;
 import org.mapstruct.*;
 
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
-@Mapper(componentModel = "jakarta", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+@Mapper(componentModel = "jakarta", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
+)
 public interface CharacteristicMapper {
     @Named("characteristicResponseDTOMapper")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "meaning", source = "meaning")
-    @Mapping(target = "product", source = "product")
     CharacteristicResponseDTO toResponseDTO(Characteristic characteristic);
 
-//@InheritConfiguration(name = )
+    @InheritConfiguration
+    @Named("characteristicSetResponseDTOMapper")
+    @BeanMapping(ignoreByDefault = true)
     default Set<CharacteristicResponseDTO> toResponseDTO(Set<Characteristic> characteristicSet) {
-        Set<CharacteristicResponseDTO> result = new LinkedHashSet<>();
+
+        Set<CharacteristicResponseDTO> resultSet = new LinkedHashSet<>();
+
         for (Characteristic characteristic: characteristicSet) {
-            result.add(toResponseDTO(characteristic));
+
+            CharacteristicResponseDTO characteristicResponseDTO = new CharacteristicResponseDTO();
+
+            characteristicResponseDTO.setId(characteristic.getId());
+            characteristicResponseDTO.setName(characteristic.getName());
+            characteristicResponseDTO.setMeaning(characteristic.getMeaning());
+
+            resultSet.add(characteristicResponseDTO);
         }
-        return result;
+        return resultSet;
     }
 
-    default List<CharacteristicResponseDTO> toResponseDTO(List<Characteristic> characteristicList) {
-        List<CharacteristicResponseDTO> result = new ArrayList<>();
-        for (Characteristic characteristic: characteristicList) {
-            result.add(toResponseDTO(characteristic));
-        }
-        return result;
-    }
-
-    @Named("characteristicResponseDTOMapper")
+    @Named("characteristicRequestDTOMapper")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "name", source = "name")
     @Mapping(target = "meaning", source = "meaning")
-    @Mapping(target = "product", source = "product")
     Characteristic toEntity(CharacteristicRequestDTO characteristicRequestDTO);
+
+    @InheritConfiguration
+    @Named("characteristicSetRequestDTOMapper")
+    @BeanMapping(ignoreByDefault = true)
+    default Set<Characteristic> toEntity(Set<CharacteristicRequestDTO> characteristicRequestDTOSet) {
+
+        Set<Characteristic> resultSet = new LinkedHashSet<>();
+
+        for (CharacteristicRequestDTO characteristicRequestDTO: characteristicRequestDTOSet) {
+
+            Characteristic characteristic = new Characteristic();
+
+            characteristic.setName(characteristicRequestDTO.getName());
+            characteristic.setMeaning(characteristicRequestDTO.getMeaning());
+
+            resultSet.add(characteristic);
+        }
+        return resultSet;
+    }
 }

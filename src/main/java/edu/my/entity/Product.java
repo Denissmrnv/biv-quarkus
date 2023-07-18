@@ -24,12 +24,12 @@ public class Product extends PanacheEntityBase {
     @Column(name = "description")
     private String description;
 
-    @OneToOne(fetch = FetchType.EAGER,optional=true)
+    @OneToOne(fetch = FetchType.LAZY,optional=true)
     @JoinColumn(name = "id_category")
     @JsonIgnore
     private Category category;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Characteristic> characteristicSet;
 }

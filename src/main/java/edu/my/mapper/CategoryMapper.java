@@ -18,19 +18,17 @@ public interface CategoryMapper {
     @Mapping(target = "code", source = "code")
     CategoryResponseDTO toResponseDTO(Category category);
 
-    default List<CategoryResponseDTO> toResponseDTO(List<Category> categoryList) {
-        List<CategoryResponseDTO> result = new ArrayList<>();
-        for (Category  category: categoryList) {
-            result.add(toResponseDTO(category));
-        }
-        return result;
-    }
+    @BeanMapping(ignoreByDefault = true)
+    List<CategoryResponseDTO> toResponseDTO(List<Category> categoryList);
 
     @Named("categoryResponseDTOMapper")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "name", source = "name")
     @Mapping(target = "code", source = "code")
     Category toEntity(CategoryRequestDTO categoryRequestDTO);
+
+    @BeanMapping(ignoreByDefault = true)
+    List<Category> toEntity(List<CategoryRequestDTO> categoryRequestDTOList);
 
 //    void update(Category cagegorySrc, @MappingTarget Category categoryUpd)
 }
