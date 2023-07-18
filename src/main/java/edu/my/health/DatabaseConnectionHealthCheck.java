@@ -8,16 +8,9 @@ import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.HealthCheckResponseBuilder;
 import org.eclipse.microprofile.health.Readiness;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
-
 @Readiness
 @ApplicationScoped
 public class DatabaseConnectionHealthCheck implements HealthCheck {
-
-    @Inject
-    DataSource dataSource;
 
     @Inject
     EntityManager entityManager;
@@ -28,11 +21,12 @@ public class DatabaseConnectionHealthCheck implements HealthCheck {
         HealthCheckResponseBuilder responseBuilder = HealthCheckResponse.named("Custom database connection health check ");
 
         try {
-            Connection connection =  dataSource.getConnection();
+            entityManager.createQuery("select  1").getResultList();
             responseBuilder.up();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             responseBuilder.down();
         }
+
         return responseBuilder.build();
     }
 }
