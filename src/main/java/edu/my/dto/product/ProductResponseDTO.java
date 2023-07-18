@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@Schema(name = "ProductDTO", description = "Product information")
+@Schema(name = "ProductResponseDTO", description = "Product information")
 public class ProductResponseDTO {
     @Schema(description = "Product id")
     private Long id;

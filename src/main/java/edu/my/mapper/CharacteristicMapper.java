@@ -20,6 +20,7 @@ public interface CharacteristicMapper {
     @Mapping(target = "product", source = "product")
     CharacteristicResponseDTO toResponseDTO(Characteristic characteristic);
 
+//@InheritConfiguration(name = )
     default Set<CharacteristicResponseDTO> toResponseDTO(Set<Characteristic> characteristicSet) {
         Set<CharacteristicResponseDTO> result = new LinkedHashSet<>();
         for (Characteristic characteristic: characteristicSet) {

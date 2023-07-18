@@ -65,6 +65,6 @@ public class CategoryController implements CategoryAPI {
     @Override
     public Response updateCategory(@PathParam("id") long id, CategoryRequestDTO categoryRequestDTO) {
         categoryControllerService.updateCategory(id, categoryRequestDTO);
-        return Response.ok(categoryRequestDTO).build();
+        return Response .ok(categoryRequestDTO).build();
     }
 }

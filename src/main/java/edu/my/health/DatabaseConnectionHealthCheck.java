@@ -2,6 +2,7 @@ package edu.my.health;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
 import org.eclipse.microprofile.health.HealthCheckResponseBuilder;
@@ -17,6 +18,9 @@ public class DatabaseConnectionHealthCheck implements HealthCheck {
 
     @Inject
     DataSource dataSource;
+
+    @Inject
+    EntityManager entityManager;
 
     @Override
     public HealthCheckResponse call() {
