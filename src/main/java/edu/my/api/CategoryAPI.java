@@ -34,10 +34,10 @@ public interface CategoryAPI {
     Response getAllCategories();
 
     @GET
-    @Path("/categories/{id}")
+    @Path("/categories/{code}")
     @Operation(
             operationId = "getCategoryByCode",
-            summary = "Get Category by id",
+            summary = "Get Category by code",
             description = "Get one category inside the db"
     )
     @APIResponse(
@@ -49,10 +49,10 @@ public interface CategoryAPI {
     )
     Response getCategoryByCode(
             @Parameter(
-                    description = "Category id",
+                    description = "Category code",
                     required = true
             )
-            @PathParam("id") Long id
+            @PathParam("code") Long code
     );
 
     @POST
@@ -82,7 +82,7 @@ public interface CategoryAPI {
             CategoryRequestDTO categoryRequestDTO);
 
     @DELETE
-    @Path("/categories/{id}")
+    @Path("/categories/{code}")
     @Operation(
             operationId = "deleteCategory",
             summary = "Delete an existing Category",
@@ -98,14 +98,14 @@ public interface CategoryAPI {
     )
     Response deleteCategory(
             @Parameter(
-                    description = "Category id",
+                    description = "Category code",
                     required = true
             )
-            @PathParam("id") long id
+            @PathParam("code") long code
     );
 
     @PUT
-    @Path("/categories/{id}")
+    @Path("/categories/{code}")
     @Operation(
             operationId = "updateCategory",
             summary = "Update an existing Category",
@@ -121,10 +121,10 @@ public interface CategoryAPI {
     )
     Response updateCategory(
             @Parameter(
-                    description = "Category id",
+                    description = "Category code",
                     required = true
             )
-            @PathParam("id") long id,
+            @PathParam("code") long code,
             @Parameter(
                     description = "Updated Category",
                     required = true

@@ -29,8 +29,8 @@ public class CategoryController implements CategoryAPI {
     @Counted(name = "performedChecksGetOneCategory", description = "How many requests of one category were made.")
     @Timed(name = "checksTimerGetOneCategory", description = "A measure of how long it takes to complete a query of one category.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public Response getCategoryByCode(@PathParam("id") Long id)  {
-        return Response.ok(categoryControllerService.getCategory(id)).build();
+    public Response getCategoryByCode(@PathParam("code") Long code)  {
+        return Response.ok(categoryControllerService.getCategory(code)).build();
     }
 
     @Counted(name = "performedChecksAddCategory", description = "How many category additions have been made.")
@@ -44,16 +44,16 @@ public class CategoryController implements CategoryAPI {
     @Counted(name = "performedChecksDeleteCategory", description = "How many category deleted have been made.")
     @Timed(name = "checksTimerDeleteCategory", description = "A measure of how long it takes to complete a category delete.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public Response deleteCategory(@PathParam("id") long id) {
-        categoryControllerService.deleteCategory(id);
+    public Response deleteCategory(@PathParam("code") long code) {
+        categoryControllerService.deleteCategory(code);
         return Response.noContent().build();
     }
 
     @Counted(name = "performedChecksUpdateCategory", description = "How many category updated have been made.")
     @Timed(name = "checksTimerUpdateCategory", description = "A measure of how long it takes to complete a category update.", unit = MetricUnits.MILLISECONDS)
     @Override
-    public Response updateCategory(@PathParam("id") long id, CategoryRequestDTO categoryRequestDTO) {
-        categoryControllerService.updateCategory(id, categoryRequestDTO);
+    public Response updateCategory(@PathParam("code") long code, CategoryRequestDTO categoryRequestDTO) {
+        categoryControllerService.updateCategory(code, categoryRequestDTO);
         return Response .ok(categoryRequestDTO).build();
     }
 }
