@@ -1,7 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: changelog/changesets/init/main.yaml
-      relativeToChangelogFile: false
-  - include:
-      file: changelog/changesets/change/main.yaml
-      relativeToChangelogFile: false
