@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: table-categories
+      author: Smirnov
+      changes:
+        - createTable:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  remarks: Идентификатор категории (первичный ключ)
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: ID_CATEGORY
+                    nullable=: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  remarks: Название категории
