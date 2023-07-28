@@ -6,7 +6,6 @@ import com.core.service.category.CategoryControllerService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.metrics.MetricUnits;
 import org.eclipse.microprofile.metrics.annotation.Counted;
@@ -14,9 +13,7 @@ import org.eclipse.microprofile.metrics.annotation.Timed;
 
 
 @RequestScoped
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
-public class CategoryController implements CategoryAPI{
+public class CategoryController implements CategoryAPI {
     @Inject
     CategoryControllerService categoryControllerService;
 
@@ -27,12 +24,20 @@ public class CategoryController implements CategoryAPI{
         return Response.ok(categoryControllerService.getAllCategories()).build();
     }
 
+    @GET
+    @Path("/d")
+    public String d()  {
+        return "ddddddd";
+    }
+
+    @Override
     @Counted(name = "performedChecksGetOneCategory", description = "How many requests of one category were made.")
     @Timed(name = "checksTimerGetOneCategory", description = "A measure of how long it takes to complete a query of one category.", unit = MetricUnits.MILLISECONDS)
     public Response getCategoryByCode(@PathParam("code") Long code)  {
         return Response.ok(categoryControllerService.getCategory(code)).build();
     }
 
+    @Override
     @Counted(name = "performedChecksAddCategory", description = "How many category additions have been made.")
     @Timed(name = "checksTimerAddCategory", description = "A measure of how long it takes to complete a category addition.", unit = MetricUnits.MILLISECONDS)
     public Response addCategory(CategoryRequestDTO categoryRequestDTO) {
@@ -40,6 +45,7 @@ public class CategoryController implements CategoryAPI{
         return Response.noContent().build();
     }
 
+    @Override
     @Counted(name = "performedChecksDeleteCategory", description = "How many category deleted have been made.")
     @Timed(name = "checksTimerDeleteCategory", description = "A measure of how long it takes to complete a category delete.", unit = MetricUnits.MILLISECONDS)
     public Response deleteCategory(@PathParam("code") long code) {
@@ -47,6 +53,7 @@ public class CategoryController implements CategoryAPI{
         return Response.noContent().build();
     }
 
+    @Override
     @Counted(name = "performedChecksUpdateCategory", description = "How many category updated have been made.")
     @Timed(name = "checksTimerUpdateCategory", description = "A measure of how long it takes to complete a category update.", unit = MetricUnits.MILLISECONDS)
     public Response updateCategory(@PathParam("code") long code, CategoryRequestDTO categoryRequestDTO) {
