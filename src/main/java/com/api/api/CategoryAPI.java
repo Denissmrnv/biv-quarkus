@@ -15,7 +15,10 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @Path("/")
 @Tag(name = "Category Resource", description = "Category REST APIs")
-public interface CategoryAPI {
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+public interface
+CategoryAPI {
     @Operation(
             operationId = "getAllCategories",
             summary = "Get all Categories",
